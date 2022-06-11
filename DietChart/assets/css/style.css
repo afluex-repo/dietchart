@@ -11176,7 +11176,7 @@ input[type="button"].btn-block {
     float: none; }
   .navbar
   {
-    background:#79b23f !important;
+    background:#18d0d0 !important;
   }
 .navbar-text {
   display: inline-block;
@@ -17890,7 +17890,7 @@ div.tagsinput {
   margin-bottom: 0;
   color: #6c7293; }
   .table thead th, .jsgrid .jsgrid-table thead th {
-    border-top: 0;
+    /*border-top: 0;*/
     border-bottom-width: 1px;
     font-weight: 500;
     color: #6c7293; }
@@ -20346,7 +20346,7 @@ div.tagsinput {
 /* Navbar */
 .navbar {
   font-weight: normal;
-  background: #191c24;
+  background: #18d0d0;
   left: 244px;
   transition: left 0.25s ease;
   -webkit-transition: left 0.25s ease;
