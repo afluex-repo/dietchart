@@ -17812,9 +17812,9 @@ div.tagsinput {
   align-items: center;
   justify-content: center; }
   .icon.icon-box-success {
-    width: 40px;
-    height: 37px;
-    background: rgba(0, 210, 91, 0.11);
+    width: 37px;
+    height: 34px;
+    background: white;
     border-radius: 7px;
     color: #00d25b; }
   .icon .icon-item {
