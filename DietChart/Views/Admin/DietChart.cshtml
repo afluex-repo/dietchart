@@ -126,8 +126,6 @@
                         </div>
                     </div>
                 </div>
-
-
             }
             else
             {
@@ -167,8 +165,8 @@
                 </div>
             }
 
-            @if (Model.Fk_DietChartId == null && Model.Fk_DietChartId == "")
-            {
+         @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
+         {
                 <div class="col-6 grid-margin stretch-card">
                     <div class="card bg-aqua">
                         <div class="card-body">
@@ -185,45 +183,6 @@
                                         <tbody id="TextBoxContainer">
                                             <tr class="breakfastcontainer" id="breakfastrow">
                                                 <td>
-                                                    @Html.TextAreaFor(m => m.Breakfast, new { @class = "Breakfast form-control", @Placeholder = "Break fast.." })
-
-                                                </td>
-                                                <td>
-                                                    <input type="button" id="addBreakfast" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
-                                                </td>
-                                            </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <br />
-                            <div id="Breakfasttable">
-                                <table class="table  table-striped table-bordered" id="BreakfasttableDetails"></table>
-                                <span id="BreakfasttableDetailsError" style="color:red"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="col-6 grid-margin stretch-card">
-                    <div class="card bg-aqua">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4 class="text-center">Breakfast</h4>
-                                    <table class="table  table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th class="hdfdddddd">Break fast<span style="color: red">*</span> </th>
-                                                <th>Action<span style="color: red">*</span> </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="TextBoxContainer">
-                                            <tr class="breakfastcontainer" id="breakfastrow">
-                                                <td>
-
-
 
                                                     @if (Model != null)
                     {
@@ -241,11 +200,6 @@
                                                             }
                                                         }
                                                     }
-
-
-
-
-
                                                 </td>
                                                 <td>
                                                     <input type="button" id="addBreakfast" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
@@ -262,7 +216,44 @@
                         </div>
                     </div>
                 </div>
-            }
+         }
+         else
+         {
+            <div class="col-6 grid-margin stretch-card">
+                <div class="card bg-aqua">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="text-center">Breakfast</h4>
+                                <table class="table  table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="hdfdddddd">Break fast<span style="color: red">*</span> </th>
+                                            <th>Action<span style="color: red">*</span> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TextBoxContainer">
+                                        <tr class="breakfastcontainer" id="breakfastrow">
+                                            <td>
+                                                @Html.TextAreaFor(m => m.Breakfast, new { @class = "Breakfast form-control", @Placeholder = "Break fast.." })
+
+                                            </td>
+                                            <td>
+                                                <input type="button" id="addBreakfast" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                            </td>
+                                        </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="Breakfasttable">
+                            <table class="table  table-striped table-bordered" id="BreakfasttableDetails"></table>
+                            <span id="BreakfasttableDetailsError" style="color:red"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         }
 
 
 
@@ -574,10 +565,6 @@
                     </div>
                 </div>
             }
-
-
-
-
         </div>
         <div class="row">
             <div class="col-md-12">
