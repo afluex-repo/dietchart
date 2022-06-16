@@ -1,0 +1,186 @@
+﻿@model DietChart.Models.Admin
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    @*<title>PrintDietChartDetails</title>*@
+    <style>
+        table, th, td {
+            font-size: 12px;
+            /*border: 1px solid black;*/
+            border-collapse: collapse;
+        }
+
+        th, td {
+            font-size: 12px;
+            padding: 2px;
+        }
+
+        @@media print {
+            #printPageButton {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-top:50px;">
+        <center>
+            <img src="../assets/images/logo.jpeg" class="img-fluid" alt="logo1" style="max-width:11%;" />
+            <button style="color:#ffffff; float:left; text-align:center; background:#a20e0e; padding: 5px; padding-right: 15px;padding-left:15px;" id="printPageButton" onclick="window.print()">Print</button>
+        </center>
+        <table style="width: 100%;margin-bottom:10px;" class="table table-striped">
+            <tr>
+                <td style="text-align:left;"><b>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</b> @ViewBag.Name</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">
+                    <b> Age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</b>@ViewBag.Age
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;" colspan="3">
+                    <b>Weight&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</b>@ViewBag.Weight &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> @ViewBag.Height &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> @ViewBag.Date
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">
+                    <b>Diet Preference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>@ViewBag.DietPreference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>BMI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>  @ViewBag.BMI
+                </td>
+            </tr>
+        </table>
+        <table style="width: 100%; text-align:center;" class="table table-striped">
+            <tr>
+                <td style="border: 1px solid black;"><b>On Waking Up</b></td>
+                <td style="border: 1px solid black;"><b>Morning Snack</b></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;">
+                    @if (Model != null)
+                    {
+                        if (Model.lstonwakingup != null)
+                        {
+                            foreach (var Item in Model.lstonwakingup)
+                            {
+                                <p>@Item.OnWakingUp</p>
+                            }
+                        }
+                    }
+                </td>
+                <td style="border: 1px solid black;">
+                    @if (Model != null)
+                    {
+                        if (Model.lstmorningsnack != null)
+                        {
+                            foreach (var Item in Model.lstmorningsnack)
+                            {
+                                <p>@Item.MorningSnack</p>
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+            <tr><td style="border: 1px solid black;"><b>Breakfast</b></td></tr>
+            <tr>
+                <td style="border: 1px solid black;">
+                    @if (Model != null)
+                    {
+                        if (Model.lstbreakfast != null)
+                        {
+                            foreach (var Item in Model.lstbreakfast)
+                            {
+                                <p>@Item.Breakfast</p>
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+        <table style="width: 100%; text-align:center;" class="table table-striped">
+            <tr><td style="border: 1px solid black;"><b>Lunch</b></td></tr>
+            <tr>
+                <td style="border: 1px solid black;">
+                    @if (Model != null)
+                    {
+                        if (Model.lstlunch != null)
+                        {
+                            foreach (var Item in Model.lstlunch)
+                            {
+                                <p>@Item.Lunch</p>
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+        <table style="width: 100%; text-align:center;" class="table table-striped">
+            <tr><td style="border: 1px solid black;"><b>Evening Snack</b></td></tr>
+            <tr>
+                <td style="border: 1px solid black;">
+                    @if (Model != null)
+                    {
+                        if (Model.lsteveningsnack != null)
+                        {
+                            foreach (var Item in Model.lsteveningsnack)
+                            {
+                                <p>@Item.EveningSnack</p>
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+        <table style="width: 100%; text-align:center;border: 1px solid black;" class="table table-striped">
+            <tr><td><b>Dinner</b></td></tr>
+            <tr>
+                <td style="border: 1px solid black;">
+                    @if (Model != null)
+                    {
+                        if (Model.lstdinner != null)
+                        {
+                            foreach (var Item in Model.lstdinner)
+                            {
+                                <p>@Item.Dinner</p>
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+        <table style="width: 100%;margin-top:10px;" class="table table-striped">
+            <tr>
+                <td style="text-align:left;"><b>  Note :  </b></td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">
+                    <b> * Drink Plenty Of Water.</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">
+                    <b>* No Soya Product, Broccoli, Cabbage, Cauliflower.</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">
+                    <b>* Low Sodium Diet</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;margin-right:100px;">
+                    <p style="margin-right: 40px;">
+                        Dt. Bhagyashree <br />Director</><br />It's Healthy<br /> Mobile-708030747
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
