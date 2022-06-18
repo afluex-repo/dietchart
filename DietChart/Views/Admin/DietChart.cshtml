@@ -4,379 +4,1079 @@
     ViewBag.Title = "DietChart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .form-control, .asColorPicker-input, .dataTables_wrapper select, .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row select, .jsgrid .jsgrid-table .jsgrid-filter-row input[type=number], .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead, .tt-query, .tt-hint {
+        border: 1px solid #2c2e33;
+        height: calc(2.25rem + 2px);
+        font-weight: normal;
+        font-size: 0.875rem;
+        padding: 0.625rem 0.6875rem;
+        background-color: #fff;
+        border-radius: 2px;
+        color: #3a3030;
+    }
 
+    .table thead th {
+        color: black;
+    }
+</style>
 <div class="content-wrapper">
     @using (Html.BeginForm("DietChart", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
     {
         <div class="col-12 grid-margin stretch-card">
             <div class="card bg-aqua">
                 <div class="card-body">
-                    <h4 class="card-title">Diet Chart</h4>
+                    <span class="text-danger">
+                        @TempData["DietChart"]
+                    </span>
                     <div class="row">
+                        <div class="col-sm-10">
+                            <h4 class="card-title">Diet Chart</h4>
+                        </div>
+                        <div class="col-sm-2">
+                            <span><a href="/Admin/DietChartList" class="btn bg-orange btn-lg pull-left py-2">Back To List</a></span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+
+                        <input type="hidden" id="Fk_DietChartId" name="Fk_DietChartId" value="@Model.Fk_DietChartId" />
+
                         <div class="col-sm-3">
                             <label for="exampleInputName1">Name <span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @Placeholder = "Name", @onkeypress = "return onlyAlphabets();" })
                         </div>
                         <div class="col-sm-3">
                             <label for="exampleInputEmail3">Age <span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Age">
+                            @Html.TextBoxFor(m => m.Age, new { @class = "form-control", @Placeholder = "Age" })
                         </div>
                         <div class="col-sm-3">
                             <label for="exampleInputPassword4">Weight <span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Weight">
+                            @Html.TextBoxFor(m => m.Weight, new { @class = "form-control", @Placeholder = "Weight" })
                         </div>
                         <div class="col-sm-3">
                             <label for="exampleSelectGender">Height <span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Height">
+                            @Html.TextBoxFor(m => m.Height, new { @class = "form-control", @Placeholder = "Height" })
                         </div>
                         <div class="col-sm-3">
                             <label for="exampleInputName1">Date <span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Date">
+                            @Html.TextBoxFor(m => m.Date, new { @class = "form-control", @Placeholder = "Date", @readonly = true })
                         </div>
                         <div class="col-sm-3">
                             <label for="exampleInputEmail3">Diet Preference <span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Diet Preference">
+                            @Html.TextBoxFor(m => m.DietPreference, new { @class = "form-control", @Placeholder = "Diet Preference" })
                         </div>
                         <div class="col-sm-3">
                             <label for="exampleInputPassword4">BMI <span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="BMI">
+                            @Html.TextBoxFor(m => m.BMI, new { @class = "form-control", @Placeholder = "BMI" })
                         </div>
                     </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h4 class="text-center">On Waking Up</h4>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Name<span style="color: red">*</span> </th>
-                                            <th>Mobile No<span style="color: red">*</span> </th>
-                                            <th>Address<span style="color: red">*</span> </th>
-                                            <th>Action<span style="color: red">*</span> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TextBoxContainer">
-                                        <tr class="mycontainer" id="mainrow">
-                                            <td>
-                                                @Html.TextBoxFor(m => m.Name, new { @class = "Name form-control", @Placeholder = "Customer Name" })
 
-                                            </td>
-                                            <td>
-                                                @Html.TextBoxFor(m => m.MobileNo, new { @class = "MobileNo form-control", @Placeholder = "Mobile Number", @onkeypress = "return isNumberKey(event)", @maxlength = "10" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 grid-margin stretch-card">
+                <div class="card bg-aqua">
+                    <div class="card-body">
+                        <div class="row">
+                            @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
+                            {
+                                <div class="col-md-12">
+                                    <span class="text-danger">
+                                        @TempData["onwakingup"]
+                                    </span>
+                                    <div class="table-responsive">
+                                        <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null)
+                                                {
+                                                    if (Model.lstonwakingup != null)
+                                                    {
+                                                        int i = 1;
+                                                        foreach (var Item in Model.lstonwakingup)
+                                                        {
+                                                            if (Item.OnWakingUpId != null && Item.OnWakingUpId != "")
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td>@Item.OnWakingUp</td>
+                                                                    <td>
+                          <a href="#" class="btn bg-orange btn-sm" onclick="DeleteOnWakingUp('@Item.OnWakingUpId')">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                            i = i + 1;
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
-                                            </td>
-                                            <td>
-                                                @Html.TextAreaFor(m => m.Address, new { @class = "Address form-control", @Placeholder = "Address.." })
+                            }
 
-                                            </td>
-                                            <td>
-                                                <input type="button" id="add" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
-                                            </td>
-                                        </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h4 class="text-center">Breakfast</h4>
-                            <div class="table-responsive">
+                            <div class="col-md-12">
+                                <h4 class="text-center">On Waking Up</h4>
                                 <table class="table  table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Name<span style="color: red">*</span> </th>
-                                            <th>Mobile No<span style="color: red">*</span> </th>
-                                            <th>Address<span style="color: red">*</span> </th>
+                                            <th>On Waking Up<span style="color: red">*</span> </th>
                                             <th>Action<span style="color: red">*</span> </th>
                                         </tr>
                                     </thead>
                                     <tbody id="TextBoxContainer">
-                                        <tr class="mycontainer" id="mainrow">
+                                        <tr class="wakingupcontainer" id="walkinrow">
                                             <td>
-                                                @Html.TextBoxFor(m => m.Name, new { @class = "Name form-control", @Placeholder = "Customer Name" })
+                                                @Html.TextAreaFor(m => m.OnWakingUp, new { @class = "OnWakingUp form-control", @Placeholder = "On Waking Up.." })
 
                                             </td>
                                             <td>
-                                                @Html.TextBoxFor(m => m.MobileNo, new { @class = "MobileNo form-control", @Placeholder = "Mobile Number", @onkeypress = "return isNumberKey(event)", @maxlength = "10" })
-
-                                            </td>
-                                            <td>
-                                                @Html.TextAreaFor(m => m.Address, new { @class = "Address form-control", @Placeholder = "Address.." })
-
-                                            </td>
-                                            <td>
-                                                <input type="button" id="add" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                                <input type="button" id="addOnWakingUp" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
                                             </td>
                                         </tr>
                                 </table>
-                                </div>
                             </div>
+                        </div>
+                        <br />
+                        <div id="wakinguptable">
+                            <table class="table  table-striped table-bordered" id="wakinguptableDetails"></table>
+                            <span id="wakinguptableDetailsError" style="color:red"></span>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-6 grid-margin stretch-card">
+                <div class="card bg-aqua">
+                    <div class="card-body">
+                        <div class="row">
 
-                    <br />
+                            @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
+                            {
+                                <div class="col-md-12">
+                                    <span class="text-danger">
+                                        @TempData["Breakfast"]
+                                    </span>
+                                    <div class="table-responsive">
+                                        <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null)
+                                                {
+                                                    if (Model.lstbreakfast != null)
+                                                    {
+                                                        int i = 1;
+                                                        foreach (var Item in Model.lstbreakfast)
+                                                        {
+                                                            if (Item.BreakfastID != null && Item.BreakfastID != "")
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td>@Item.Breakfast</td>
+                                                                    <td>
+                                                                        <a href="/Admin/DeleteBreakfast?BreakfastID=@Item.BreakfastID" class="btn bg-orange btn-sm" onclick="confirm('Are you sure you want to delete this breakfast record ?')">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                            i = i + 1;
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
-                    
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h4 class="text-center">Lunch</h4>
-                            <div class="table-responsive">
+                            }
+                            <div class="col-md-12">
+                                <h4 class="text-center">Breakfast</h4>
                                 <table class="table  table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Name<span style="color: red">*</span> </th>
-                                            <th>Mobile No<span style="color: red">*</span> </th>
-                                            <th>Address<span style="color: red">*</span> </th>
+                                            <th>Break fast<span style="color: red">*</span> </th>
                                             <th>Action<span style="color: red">*</span> </th>
                                         </tr>
                                     </thead>
                                     <tbody id="TextBoxContainer">
-                                        <tr class="mycontainer" id="mainrow">
+                                        <tr class="breakfastcontainer" id="breakfastrow">
                                             <td>
-                                                @Html.TextBoxFor(m => m.Name, new { @class = "Name form-control", @Placeholder = "Customer Name" })
+                                                @Html.TextAreaFor(m => m.Breakfast, new { @class = "Breakfast form-control", @Placeholder = "Break fast.." })
 
                                             </td>
                                             <td>
-                                                @Html.TextBoxFor(m => m.MobileNo, new { @class = "MobileNo form-control", @Placeholder = "Mobile Number", @onkeypress = "return isNumberKey(event)", @maxlength = "10" })
-
-                                            </td>
-                                            <td>
-                                                @Html.TextAreaFor(m => m.Address, new { @class = "Address form-control", @Placeholder = "Address.." })
-
-                                            </td>
-                                            <td>
-                                                <input type="button" id="add" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                                <input type="button" id="addBreakfast" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
                                             </td>
                                         </tr>
                                 </table>
-                                </div>
                             </div>
-                    </div>
-                    <br />
-
-                    <div id="orderItems">
-                        <table class="table  table-striped table-bordered" id="orderdetailsItems"></table>
-                        <span id="orderItemError" style="color:red"></span>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input class="btn bg-orange btn-lg pull-left" type="submit" value="Save" id="btnsssubmit" name="Save" />
-                            </div>
+                        </div>
+                        <br />
+                        <div id="Breakfasttable">
+                            <table class="table  table-striped table-bordered" id="BreakfasttableDetails"></table>
+                            <span id="BreakfasttableDetailsError" style="color:red"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    }
-</div>
+        <div class="row">
+            <div class="col-6 grid-margin stretch-card">
+                <div class="card bg-aqua">
+                    <div class="card-body">
+                        <div class="row">
+                            @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
+                            {
+                                <div class="col-md-12">
+                                    <span class="text-danger">
+                                        @TempData["MorningSnack"]
+                                    </span>
+                                    <div class="table-responsive">
+                                        <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null)
+                                                {
+                                                    if (Model.lstmorningsnack != null)
+                                                    {
+                                                        int i = 1;
+                                                        foreach (var Item in Model.lstmorningsnack)
+                                                        {
+                                                            if (Item.MorningSnackID != null && Item.MorningSnackID != "")
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td>@Item.MorningSnack</td>
+                                                                    <td>
+                                                                        <a href="/Admin/DeleteMorningSnack?MorningSnackID=@Item.MorningSnackID" class="btn bg-orange btn-sm" onclick="confirm('Are you sure you want to delete this morning snack record ?')">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                            i = i + 1;
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
+                            }
+                            <div class="col-md-12">
+                                <h4 class="text-center">Morning Snack</h4>
+                                <table class="table  table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Morning Snack<span style="color: red">*</span> </th>
+                                            <th>Action<span style="color: red">*</span> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TextBoxContainer">
+                                        <tr class="MorningSnackcontainer" id="MorningSnackrow">
+                                            <td>
+                                                @Html.TextAreaFor(m => m.MorningSnack, new { @class = "MorningSnack form-control", @Placeholder = "Morning Snack.." })
+
+                                            </td>
+                                            <td>
+                                                <input type="button" id="addMorningSnack" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                            </td>
+                                        </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="MorningSnacktable">
+                            <table class="table  table-striped table-bordered" id="MorningSnacktableDetails"></table>
+                            <span id="MorningSnacktableDetailsError" style="color:red"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 grid-margin stretch-card">
+                <div class="card bg-aqua">
+                    <div class="card-body">
+                        <div class="row">
+                            @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
+                            {
+                                <div class="col-md-12">
+                                    <span class="text-danger">
+                                        @TempData["Lunch"]
+                                    </span>
+                                    <div class="table-responsive">
+                                        <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null)
+                                                {
+                                                    if (Model.lstlunch != null)
+                                                    {
+                                                        int i = 1;
+                                                        foreach (var Item in Model.lstlunch)
+                                                        {
+                                                            if (Item.LunchID != null && Item.LunchID != "")
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td>@Item.Lunch</td>
+                                                                    <td>
+                                                                        <a href="/Admin/DeleteLunch?LunchID=@Item.LunchID" class="btn bg-orange btn-sm" onclick="confirm('Are you sure you want to delete this lunch record ?')">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                            i = i + 1;
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            }
+                            <div class="col-md-12">
+                                <h4 class="text-center">Lunch</h4>
+                                <table class="table  table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Lunch<span style="color: red">*</span> </th>
+                                            <th>Action<span style="color: red">*</span> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TextBoxContainer">
+                                        <tr class="Lunchcontainer" id="Lunchrow">
+                                            <td>
+                                                @Html.TextAreaFor(m => m.Lunch, new { @class = "Lunch form-control", @Placeholder = "Lunch.." })
+
+                                            </td>
+                                            <td>
+                                                <input type="button" id="addLunch" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                            </td>
+                                        </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="Lunchtable">
+                            <table class="table  table-striped table-bordered" id="LunchtableDetails"></table>
+                            <span id="LunchtableDetailsError" style="color:red"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 grid-margin stretch-card">
+                <div class="card bg-aqua">
+                    <div class="card-body">
+                        <div class="row">
+                            @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
+                            {
+                                <div class="col-md-12">
+                                    <span class="text-danger">
+                                        @TempData["EveningSnack"]
+                                    </span>
+                                    <div class="table-responsive">
+                                        <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null)
+                                                {
+                                                    if (Model.lsteveningsnack != null)
+                                                    {
+                                                        int i = 1;
+                                                        foreach (var Item in Model.lsteveningsnack)
+                                                        {
+                                                            if (Item.EveningSnackID != null && Item.EveningSnackID != "")
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td>@Item.EveningSnack</td>
+                                                                    <td>
+                                                                        <a href="/Admin/DeleteEveningSnack?EveningSnackID=@Item.EveningSnackID" class="btn bg-orange btn-sm"  onclick="confirm('Are you sure you want to delete this evening snack record ?')">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                            i = i + 1;
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            }
+                            <div class="col-md-12">
+                                <h4 class="text-center">Evening Snack</h4>
+                                <table class="table  table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Evening Snack<span style="color: red">*</span> </th>
+                                            <th>Action<span style="color: red">*</span> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TextBoxContainer">
+                                        <tr class="EveningSnackcontainer" id="EveningSnackrow">
+                                            <td>
+                                                @Html.TextAreaFor(m => m.EveningSnack, new { @class = "EveningSnack form-control", @Placeholder = "Evening Snack.." })
+
+                                            </td>
+                                            <td>
+                                                <input type="button" id="addEveningSnack" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                            </td>
+                                        </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="EveningSnacktable">
+                            <table class="table  table-striped table-bordered" id="EveningSnacktableDetails"></table>
+                            <span id="EveningSnacktableDetailsError" style="color:red"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 grid-margin stretch-card">
+                <div class="card bg-aqua">
+                    <div class="card-body">
+                        <div class="row">
+                            @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
+                            {
+                                <div class="col-md-12">
+                                    <span class="text-danger">
+                                       @TempData["Dinner"]
+                                    </span>
+                                    <div class="table-responsive">
+                                        <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr No.</th>
+                                                    <th>Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null)
+                                                {
+                                                    if (Model.lstdinner != null)
+                                                    {
+                                                        int i = 1;
+                                                        foreach (var Item in Model.lstdinner)
+                                                        {
+                                                            if (Item.DinnerID != null && Item.DinnerID != "")
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td>@Item.Dinner</td>
+                                                                    <td>
+                                                                        <a href="/Admin/DeleteDinner?DinnerID=@Item.DinnerID" class="btn bg-orange btn-sm" onclick="confirm('Are you sure you want to delete this dinner record ?')">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                            i = i + 1;
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            }
+                            <div class="col-md-12">
+                                <h4 class="text-center">Dinner</h4>
+                                <table class="table  table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Dinner<span style="color: red">*</span> </th>
+                                            <th>Action<span style="color: red">*</span> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TextBoxContainer">
+                                        <tr class="Dinnercontainer" id="Dinnerrow">
+                                            <td>
+                                                @Html.TextAreaFor(m => m.Dinner, new { @class = "Dinner form-control", @Placeholder = "Dinner.." })
+
+                                            </td>
+                                            <td>
+                                                <input type="button" id="addDinner" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                            </td>
+                                        </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="Dinnertable">
+                            <table class="table  table-striped table-bordered" id="DinnertableDetails"></table>
+                            <span id="DinnertableDetailsError" style="color:red"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input class="btn bg-orange btn-lg pull-left py-2" type="submit" value="Save" id="btnfinalsubmit" name="Save" />
+                    </div>
+                </div>
+            </div>
+    }
+
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
-@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">*@
-@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />*@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#add').click(function () {
+        var Fk_DietChartId = $("#Fk_DietChartId").val();
+        if (Fk_DietChartId != 0) {
+            $("#btnfinalsubmit").val("Update");
+        }
+
+        $('#addOnWakingUp').click(function () {
             debugger;
             var isAllValid = true;
-            if (!($('#Name').val().trim() != '' && ($('#Name').val().trim()))) {
-                $("#Name").addClass('errortext');
-                $('#Name').focus();
-                isAllValid = false;
-
-            }
-            else if (!($('#MobileNo').val().trim() != '' && ($('#MobileNo').val().trim()))) {
-                $("#MobileNo").addClass('errortext');
-                $('#MobileNo').focus();
-                isAllValid = false;
-            }
-            else if (!($('#Address').val().trim() != '' && ($('#Address').val().trim()))) {
-                $("#Address").addClass('errortext');
-                $('#Address').focus();
+            if (!($('#OnWakingUp').val().trim() != '' && ($('#OnWakingUp').val().trim()))) {
+                $("#OnWakingUp").addClass('errortext');
+                $('#OnWakingUp').focus();
                 isAllValid = false;
             }
             debugger
             if (isAllValid) {
-                var $newRow = $('#mainrow').clone().removeAttr('id');
-                $('.Name', $newRow).prop('disabled', true).val($('#Name').val());
-                $('.MobileNo', $newRow).prop('disabled', true).val($('#MobileNo').val());
-                $('.Address', $newRow).prop('disabled', true).val($('#Address').val());
+                var $newRow = $('#walkinrow').clone().removeAttr('id');
+                $('.OnWakingUp', $newRow).removeClass('errortext').prop('disabled', true).val($('#OnWakingUp').val());
                 //Replace add button with remove button
-                $('#add', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-danger');
+                $('#addOnWakingUp', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
                 //remove id attribute from new clone row
-                $('#Name,#MobileNo,#Address,#add', $newRow).removeAttr('id');
+                $('#OnWakingUp,#addOnWakingUp', $newRow).removeAttr('id');
                 $('span.error', $newRow).remove();
                 //append clone row
-                $('#orderdetailsItems').append($newRow);
+                $('#wakinguptableDetails').append($newRow);
                 //clear select data
-                $('#Name,#MobileNo,#Address').val('');
-                $('#orderItemError').empty();
+                $('#OnWakingUp').val('');
+                $('#wakinguptableDetailsError').empty();
             }
 
         })
         //remove button click event
-        $('#orderdetailsItems').on('click', '.remove', function () {
+        $('#wakinguptableDetails').on('click', '.remove', function () {
             $(this).parents('tr').remove();
         });
-        $('#btnsssubmit').click(function () {
+        //////breakfast statrt
+        $('#addBreakfast').click(function () {
+            debugger;
             var isAllValid = true;
-            if ($('#exampleInputName1').val() == '' || $('#exampleInputName1').val() == null) {
-                $("#exampleInputName1").addClass('errortext');
-                $('#exampleInputName1').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            if ($('#Pk_CategoryId').val() == '0') {
-                $("#Pk_CategoryId").addClass('errortext');
-                $('#Pk_CategoryId').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            if ($('#VisitDate').val() == '') {
-                $("#VisitDate").addClass('errortext');
-                $('#VisitDate').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            if ($('#VehicleNumber').val() == '') {
-                $("#VehicleNumber").addClass('errortext');
-                $('#VehicleNumber').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-
-
-            $('#orderItemError').text('');
-            var list = [];
-            var errorItemCount = 0;
-            $('#orderdetailsItems tr').each(function (index, ele) {
-                if (
-                    $('Name', this).val() == "") {
-                    errorItemCount++;
-                    $(this).addClass('error');
-                } else {
-                    var orderItem = {
-                        CustomerName: ($('.Name', this).val()),
-                        Mobile: $('.MobileNo', this).val(),
-                        Address: $('.Address', this).val()
-                    }
-                    list.push(orderItem);
-                }
-
-            })
-            console.log(list)
-            if (errorItemCount > 0) {
-                $('#orderItemError').text(errorItemCount + " invalid entry in order item list.");
+            if (!($('#Breakfast').val().trim() != '' && ($('#Breakfast').val().trim()))) {
+                $("#Breakfast").addClass('errortext');
+                $('#Breakfast').focus();
                 isAllValid = false;
             }
-
-            if (list.length == 0) {
-                $('#orderItemError').text('At least 1 row data required.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-
+            debugger
             if (isAllValid) {
-                debugger;
-                var data = {
-                    AddData: JSON.stringify(list),
-                }
-                debugger
-                var formData = new FormData();
-                var files = $("#postedFile1").get(0).files;
-                formData.append("Image", files[0]);
-                formData.append("SiteID", $('#SiteID').val());
-                formData.append("VisitorId", $('#VisitorId').val());
-                formData.append("VisitorDetailId", $('#VisitorDetailId').val());
-                formData.append("AssociateID", $('#UserID').val());
-                formData.append("Pk_CategoryId", $('#Pk_CategoryId').val());
-                formData.append("VisitDate", $('#VisitDate').val());
-                formData.append("AssociateName", $('#AssociateName').val());
-                formData.append("VehicleNumber", $('#VehicleNumber').val());
-                formData.append("PickUpLocation", $('#PickUpLocation').val());
-                formData.append("DropLocation", $('#DropLocation').val());
-                formData.append("PickUpTime", $('#PickUpTime').val());
-                formData.append("DropTime", $('#DropTime').val());
-                formData.append("dataValue", JSON.stringify(data));
-                console.log(formData);
-                $.ajax({
-                    type: 'POST',
-                    url: "AddProfile",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    //url: 'save',
-                    //Type: "POST",
-                    //DataType: "JSON",
-                    //data: { dataValue: JSON.stringify(data), SiteID: $("#SiteID").val(), AssociateID: $("#UserID").val(), Amount: $("#Amount").val(), VisiteDate: $("#VisitDate").val(), postedFile1: formData},
-
-                    //contentType: 'application/json',
-                    success: function (response) {
-                        //alert(result);
-                        if (response.status) {
-
-                            // here we will clear the form
-                            list = [];
-
-                            //$('#ExpenseID,#ExpenseName,#TransactionID,#PaymentMode').val('0');
-                            //$('#Check,#Amount,#Date,#Remarks').val('');
-                            //$('#orderdetailsItems').empty();
-                            //$('#orderdetailsItems').hide();
-                        }
-                        else {
-                            alert('Error');
-                        }
-                        $('#submit').text('Save');
-                    },
-                    error: function (error) {
-                        console.log(error);
-                        $('#submit').text('Save');
-                    }
-                });
-                $('#submit').text('Save');
+                var $newRow = $('#breakfastrow').clone().removeAttr('id');
+                $('.Breakfast', $newRow).removeClass('errortext').prop('disabled', true).val($('#Breakfast').val());
+                //Replace add button with remove button
+                $('#addBreakfast', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#Breakfast,#addBreakfast', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#BreakfasttableDetails').append($newRow);
+                //clear select data
+                $('#Breakfast').val('');
+                $('#BreakfasttableDetailsError').empty();
             }
+
+        })
+        //remove button click event
+        $('#BreakfasttableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
         });
+        ////////////MorningSnack
+        $('#addMorningSnack').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#MorningSnack').val().trim() != '' && ($('#MorningSnack').val().trim()))) {
+                $("#MorningSnack").addClass('errortext');
+                $('#MorningSnack').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#MorningSnackrow').clone().removeAttr('id');
+                $('.MorningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#MorningSnack').val());
+                //Replace add button with remove button
+                $('#addMorningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#MorningSnack,#addMorningSnack', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#MorningSnacktableDetails').append($newRow);
+                //clear select data
+                $('#MorningSnack').val('');
+                $('#MorningSnacktableDetailsError').empty();
+            }
+
+        })
+        //remove button click event
+        $('#MorningSnacktableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+        ////////////Lunch
+        $('#addLunch').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#Lunch').val().trim() != '' && ($('#Lunch').val().trim()))) {
+                $("#Lunch").addClass('errortext');
+                $('#Lunch').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#Lunchrow').clone().removeAttr('id');
+                $('.Lunch', $newRow).removeClass('errortext').prop('disabled', true).val($('#Lunch').val());
+                //Replace add button with remove button
+                $('#addLunch', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#Lunch,#addLunch', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#LunchtableDetails').append($newRow);
+                //clear select data
+                $('#Lunch').val('');
+                $('#LunchtableDetailsError').empty();
+            }
+
+        })
+        //remove button click event
+        $('#LunchtableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+        ////////////Evening Snack
+        $('#addEveningSnack').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#EveningSnack').val().trim() != '' && ($('#EveningSnack').val().trim()))) {
+                $("#EveningSnack").addClass('errortext');
+                $('#EveningSnack').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#EveningSnackrow').clone().removeAttr('id');
+                $('.EveningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#EveningSnack').val());
+                //Replace add button with remove button
+                $('#addEveningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#EveningSnack,#addEveningSnack', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#EveningSnacktableDetails').append($newRow);
+                //clear select data
+                $('#EveningSnack').val('');
+                $('#EveningSnacktableDetailsError').empty();
+            }
+
+        })
+        //remove button click event
+        $('#EveningSnacktableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+        ////////////Dinner
+        $('#addDinner').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#Dinner').val().trim() != '' && ($('#Dinner').val().trim()))) {
+                $("#Dinner").addClass('errortext');
+                $('#Dinner').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#Dinnerrow').clone().removeAttr('id');
+                $('.Dinner', $newRow).removeClass('errortext').prop('disabled', true).val($('#Dinner').val());
+                //Replace add button with remove button
+                $('#addDinner', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#Dinner,#addDinner', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#DinnertableDetails').append($newRow);
+                //clear select data
+                $('#Dinner').val('');
+                $('#DinnertableDetailsError').empty();
+            }
+
+        })
+        //remove button click event
+        $('#DinnertableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+    })
+    $('#btnfinalsubmit').click(function () {
+        var isAllValid = true;
+        var Fk_DietChartId = $("#Fk_DietChartId").val();
+
+        if ($('#Name').val() == '') {
+            $("#Name").addClass('errortext');
+            $('#Name').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Age').val() == '') {
+            $("#Age").addClass('errortext');
+            $('#Age').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Weight').val() == '') {
+            $("#Weight").addClass('errortext');
+            $('#Weight').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Height').val() == '') {
+            $("#Height").addClass('errortext');
+            $('#Height').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Date').val() == '') {
+            $("#Date").addClass('errortext');
+            $('#Date').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#DietPreference').val() == '') {
+            $("#DietPreference").addClass('errortext');
+            $('#DietPreference').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#BMI').val() == '') {
+            $("#BMI").addClass('errortext');
+            $('#BMI').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+        $('#wakinguptableDetailsError').text('');
+        var wakinguplist = [];
+        var wakinguperrorItemCount = 0;
+        $('#wakinguptableDetails tr').each(function (index, ele) {
+            if (
+                $('.OnWakingUp', this).val() == "") {
+                wakinguperrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var wakinguporderItem = {
+                    OnWakingUp: $('.OnWakingUp', this).val()
+                }
+                wakinguplist.push(wakinguporderItem);
+            }
+        })
+        console.log(wakinguplist)
+        if (wakinguperrorItemCount > 0) {
+            $('#wakinguptableDetailsError').text(wakinguperrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (wakinguplist.length == 0) {
+            $('#wakinguptableDetailsError').text('At least 1 row data required in on waking up chart.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+        //////////Breakfast
+        $('#BreakfasttableDetailsError').text('');
+        var Breakfastlist = [];
+        var BreakfasterrorItemCount = 0;
+        $('#BreakfasttableDetails tr').each(function (index, ele) {
+            if (
+                $('.Breakfast', this).val() == "") {
+                BreakfasterrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var BreakfastorderItem = {
+                    Breakfast: $('.Breakfast', this).val()
+                }
+                Breakfastlist.push(BreakfastorderItem);
+            }
+        })
+        console.log(Breakfastlist)
+        if (BreakfasterrorItemCount > 0) {
+            $('#BreakfasttableDetailsError').text(BreakfasterrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (Breakfastlist.length == 0) {
+            $('#BreakfasttableDetailsError').text('At least 1 row data required in Break fast.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+        ////////////////MorningSnack
+        $('#MorningSnacktableDetailsError').text('');
+        var MorningSnacklist = [];
+        var MorningSnackerrorItemCount = 0;
+        $('#MorningSnacktableDetails tr').each(function (index, ele) {
+            if (
+                $('.MorningSnack', this).val() == "") {
+                MorningSnackerrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var MorningSnackorderItem = {
+                    MorningSnack: $('.MorningSnack', this).val()
+                }
+                MorningSnacklist.push(MorningSnackorderItem);
+            }
+        })
+        console.log(MorningSnacklist)
+        if (MorningSnackerrorItemCount > 0) {
+            $('#MorningSnacktableDetailsError').text(MorningSnackerrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (MorningSnacklist.length == 0) {
+            $('#MorningSnacktableDetailsError').text('At least 1 row data required in Morning Snack.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+        ///////////////////Lunch
+        $('#LunchtableDetailsError').text('');
+        var Lunchlist = [];
+        var LuncherrorItemCount = 0;
+        $('#LunchtableDetails tr').each(function (index, ele) {
+            if (
+                $('.Lunch', this).val() == "") {
+                LuncherrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var LunchorderItem = {
+                    Lunch: $('.Lunch', this).val()
+                }
+                Lunchlist.push(LunchorderItem);
+            }
+        })
+        console.log(Lunchlist)
+        if (LuncherrorItemCount > 0) {
+            $('#LunchtableDetailsError').text(LuncherrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (Lunchlist.length == 0) {
+            $('#LunchtableDetailsError').text('At least 1 row data required in Lunch.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+        ///////////////////EveningSnack
+        $('#EveningSnacktableDetailsError').text('');
+        var EveningSnacklist = [];
+        var EveningSnackerrorItemCount = 0;
+        $('#EveningSnacktableDetails tr').each(function (index, ele) {
+            if (
+                $('.EveningSnack', this).val() == "") {
+                EveningSnackerrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var EveningSnackorderItem = {
+                    EveningSnack: $('.EveningSnack', this).val()
+                }
+                EveningSnacklist.push(EveningSnackorderItem);
+            }
+        })
+        console.log(EveningSnacklist)
+        if (EveningSnackerrorItemCount > 0) {
+            $('#EveningSnacktableDetailsError').text(EveningSnackerrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (EveningSnacklist.length == 0) {
+            $('#EveningSnacktableDetailsError').text('At least 1 row data required in Evening Snack.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        ///////////////////Dinner
+        $('#DinnertableDetailsError').text('');
+        var Dinnerlist = [];
+        var DinnererrorItemCount = 0;
+        $('#DinnertableDetails tr').each(function (index, ele) {
+            if (
+                $('.Dinner', this).val() == "") {
+                DinnererrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var DinnerorderItem = {
+                    Dinner: $('.Dinner', this).val()
+                }
+                Dinnerlist.push(DinnerorderItem);
+            }
+        })
+        console.log(Dinnerlist)
+        if (DinnererrorItemCount > 0) {
+            $('#DinnertableDetailsError').text(DinnererrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (Dinnerlist.length == 0) {
+            $('#DinnertableDetailsError').text('At least 1 row data required in Dinner.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+        if (isAllValid) {
+            debugger;
+            var wakingupdata = {
+                wakingupAddData: JSON.stringify(wakinguplist),
+            }
+
+            var Breakfastdata = {
+                BreakfastAddData: JSON.stringify(Breakfastlist),
+            }
+
+            var MorningSnackdata = {
+                MorningSnackAddData: JSON.stringify(MorningSnacklist),
+            }
+            var Lunchdata = {
+                LunchAddData: JSON.stringify(Lunchlist),
+            }
+            var EveningSnackdata = {
+                EveningSnackAddData: JSON.stringify(EveningSnacklist),
+            }
+
+            var Dinnerdata = {
+                DinnerAddData: JSON.stringify(Dinnerlist),
+            }
+
+            debugger
+            var formData = new FormData();
+            formData.append("Fk_DietChartId", $('#Fk_DietChartId').val());
+            formData.append("Name", $('#Name').val());
+            formData.append("Name", $('#Name').val());
+            formData.append("Age", $('#Age').val());
+            formData.append("Weight", $('#Weight').val());
+            formData.append("Height", $('#Height').val());
+            formData.append("Date", $('#Date').val());
+            formData.append("DietPreference", $('#DietPreference').val());
+            formData.append("BMI", $('#BMI').val());
+            formData.append("wakingupdataValue", JSON.stringify(wakingupdata));
+            formData.append("BreakfastdataValue", JSON.stringify(Breakfastdata));
+            formData.append("MorningSnackdataValue", JSON.stringify(MorningSnackdata));
+            formData.append("LunchdataValue", JSON.stringify(Lunchdata));
+            formData.append("EveningSnackdataValue", JSON.stringify(EveningSnackdata));
+            formData.append("DinnerdataValue", JSON.stringify(Dinnerdata));
+
+            action = "";
+            message = '';
+            if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null) {
+
+                action = '@Url.Action("SaveDietChart", "Admin")'
+                //message = 'Record saved successfully';
+            }
+            else {
+                action = '@Url.Action("UpdateDietChart", "Admin")'
+                //message = 'Record updated successfully';
+            }
+            $.ajax({
+                type: 'POST',
+                url:action,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    //alert(result);
+                    if (response.status) {
+                        // here we will clear the form
+                        list = [];
+                    }
+                    else {
+                        //alert('Error');
+                    }
+                    //$('#submit').text('Save');
+                },
+                error: function (error) {
+                    console.log(error);
+                    //$('#submit').text('Save');
+                }
+            });
+            //$('#submit').text('Save');
+        }
+    });
+    $('#Date').datepicker({
+        dateFormat: 'dd/mm/yy',
+        maxDate: 0,
+        changeYear: true,
+        changeMonth: true
     });
 
-</script>
-<script>
-    function isNumberOrDecimal(evt) {
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if (charCode != 46 && charCode > 31
-          && (charCode < 48 || charCode > 57))
-            return false;
-        return true;
-    }
-    function isNumberKey(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode;
-        if (charCode != 46 && charCode > 31
-          && (charCode < 48 || charCode > 57))
-            return false;
-        return true;
-    }
-</script>
 
+    function onlyAlphabets(e, t) {
+        try {
+            if (window.event) {
+                var charCode = window.event.keyCode;
+            }
+            else if (e) {
+                var charCode = e.which;
+            }
+            else { return true; }
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || (charCode == 32))
+                return true;
+            else
+                return false;
+        }
+        catch (err) {
+            alert(err.Description);
+        }
+    }
+
+
+
+</script>
 <style>
     .errortext {
         border: 1px solid red !important;
         background-color: #fff0f0 !important;
     }
 </style>
-
-
-
-
-
-
-
-
-

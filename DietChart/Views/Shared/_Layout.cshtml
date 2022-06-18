@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../assets/vendors/owl-carousel-2/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/vendors/owl-carousel-2/owl.theme.default.min.css">
     <!-- End plugin css for this page -->
-
     <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- End layout styles -->
@@ -26,8 +25,19 @@
             /*max-width: 100%;*/
             height: 90px;
             margin: auto;
-            margin-top:15px;
+            margin-top: 15px;
             vertical-align: middle;
+        }
+
+        .footer {
+            background: #15b8b8;
+            padding: 20px 1rem;
+            transition: all 0.25s ease;
+            -moz-transition: all 0.25s ease;
+            -webkit-transition: all 0.25s ease;
+            -ms-transition: all 0.25s ease;
+            font-size: calc(0.875rem - 0.05rem);
+            font-weight: 300;
         }
     </style>
 </head>
@@ -58,7 +68,7 @@
                     </div>
                 </li>
                 <li class="nav-item nav-category">
-                   
+
                 </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" href="/Admin/AdminDashBoard">
@@ -131,8 +141,17 @@
             <div class="main-panel">
                 @RenderBody()
                 <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="d-block text-center text-sm-left d-sm-inline-block"><a href="https://afluex.com/" class="text-white" target="_blank">Copyright © Afluex Multi Services.</a></span>
+                    <div class="container">
+                        <div class="copywrite-text">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <p style="text-align:center;">
+                                        Copyright &copy;
+                                        <script>document.write(new Date().getFullYear());</script> It's Healthy All rights reserved | Design & Developed by <a style="color:black;" href="https://afluex.com/" target="_blank">Afluex Multiservices LLP</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </footer>
                 <!-- partial -->

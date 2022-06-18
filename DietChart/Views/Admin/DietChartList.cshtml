@@ -1,0 +1,92 @@
+﻿@model DietChart.Models.Admin
+
+@{
+    ViewBag.Title = "DietChartList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table, .jsgrid .jsgrid-table {
+        margin-bottom: 0;
+        color: #ffffff;
+    }
+
+        .table th, .jsgrid .jsgrid-table th, .table td, .jsgrid .jsgrid-table td {
+            padding: 0.9375rem;
+            vertical-align: top;
+            border-top: 1px solid #fcfcfc;
+        }
+
+        .table thead th, .jsgrid .jsgrid-table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dfdfdf;
+        }
+
+        .table thead th {
+            color: black;
+        }
+</style>
+
+<div class="content-wrapper">
+    @using (Html.BeginForm("DietChartList", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+    {
+
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card bg-aqua">
+                <div class="card-body">
+                    <span class="text-danger">
+                        @TempData["DietChart"]
+                    </span>
+                    <h4 class="card-title">Diet Chart List</h4>
+                    <div class="row mb-4">
+                        <div class="table-responsive">
+                            <table id="file_export" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Weight</th>
+                                        <th>Height</th>
+                                        <th>Date</th>
+                                        <th>Diet Preference</th>
+                                        <th>BMI</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null)
+                                    {
+                                        if (Model.lstdietchart != null)
+                                        {
+                                            int i = 1;
+                                            foreach (var Item in Model.lstdietchart)
+                                            {
+                                                <tr class="text-left">
+                                                    <td>@i</td>
+                                                    <td>@Item.Name</td>
+                                                    <td>@Item.Age</td>
+                                                    <td>@Item.Weight</td>
+                                                    <td>@Item.Height</td>
+                                                    <td>@Item.Date</td>
+                                                    <td>@Item.DietPreference</td>
+                                                    <td>@Item.BMI</td>
+                                                    <td>
+                                                        <a href="/Admin/PrintDietChartDetails?Fk_DietChartId=@Item.Encrypt" class="btn bg-orange">View</a>
+                                                        <a href="/Admin/DietChart?Fk_DietChartId=@Item.Fk_DietChartId" class="btn bg-green">Edit</a>
+                                                        <a href="/Admin/SaveAnother?Fk_DietChartId=@Item.Fk_DietChartId&Newid=2" class="btn bg-green">Edit as New</a>
+                                                    </td>
+                                                </tr>
+                                                i++;
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
