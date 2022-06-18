@@ -9,19 +9,21 @@
         margin-bottom: 0;
         color: #ffffff;
     }
-    .table th, .jsgrid .jsgrid-table th, .table td, .jsgrid .jsgrid-table td {
-    padding: 0.9375rem;
-    vertical-align: top;
-    border-top: 1px solid #fcfcfc;
-}
-   .table thead th, .jsgrid .jsgrid-table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dfdfdf;
-}
 
-   .table thead th {
-      color:black;
-    }
+        .table th, .jsgrid .jsgrid-table th, .table td, .jsgrid .jsgrid-table td {
+            padding: 0.9375rem;
+            vertical-align: top;
+            border-top: 1px solid #fcfcfc;
+        }
+
+        .table thead th, .jsgrid .jsgrid-table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dfdfdf;
+        }
+
+        .table thead th {
+            color: black;
+        }
 </style>
 
 <div class="content-wrapper">
@@ -53,12 +55,12 @@
                                 </thead>
                                 <tbody>
                                     @if (Model != null)
-                                {
-                                    if (Model.lstdietchart != null)
                                     {
-                                        int i = 1;
-                                        foreach (var Item in Model.lstdietchart)
+                                        if (Model.lstdietchart != null)
                                         {
+                                            int i = 1;
+                                            foreach (var Item in Model.lstdietchart)
+                                            {
                                                 <tr class="text-left">
                                                     <td>@i</td>
                                                     <td>@Item.Name</td>
@@ -68,16 +70,16 @@
                                                     <td>@Item.Date</td>
                                                     <td>@Item.DietPreference</td>
                                                     <td>@Item.BMI</td>
-                                                    <td><a href="/Admin/PrintDietChartDetails?Fk_DietChartId=@Item.Encrypt" class="btn bg-orange">View</a>
-                                                    
-                                                        @*<a href="/Admin/DietChart?Fk_DietChartId=@Item.Fk_DietChartId" class="btn bg-green">Edit</a>*@
-                                                    
+                                                    <td>
+                                                        <a href="/Admin/PrintDietChartDetails?Fk_DietChartId=@Item.Encrypt" class="btn bg-orange">View</a>
+                                                        <a href="/Admin/DietChart?Fk_DietChartId=@Item.Fk_DietChartId" class="btn bg-green">Edit</a>
+                                                        <a href="/Admin/SaveAnother?Fk_DietChartId=@Item.Fk_DietChartId&Newid=2" class="btn bg-green">Edit as New</a>
                                                     </td>
                                                 </tr>
-                                            i++;
+                                                i++;
+                                            }
                                         }
                                     }
-                                }
                                 </tbody>
                             </table>
                         </div>
