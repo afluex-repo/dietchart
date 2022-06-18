@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6 grid-margin stretch-card">
+            <div class="col-12 col-sm-6 col-md-6 grid-margin stretch-card">
                 <div class="card bg-aqua">
                     <div class="card-body">
                         <div class="row">
@@ -125,24 +125,26 @@
 
                             <div class="col-md-12">
                                 <h4 class="text-center">On Waking Up</h4>
-                                <table class="table  table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>On Waking Up<span style="color: red">*</span> </th>
-                                            <th>Action<span style="color: red">*</span> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TextBoxContainer">
-                                        <tr class="wakingupcontainer" id="walkinrow">
-                                            <td>
-                                                @Html.TextAreaFor(m => m.OnWakingUp, new { @class = "OnWakingUp form-control", @Placeholder = "On Waking Up.." })
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>On Waking Up<span style="color: red">*</span> </th>
+                                                <th>Action<span style="color: red">*</span> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TextBoxContainer">
+                                            <tr class="wakingupcontainer" id="walkinrow">
+                                                <td>
+                                                    @Html.TextAreaFor(m => m.OnWakingUp, new { @class = "OnWakingUp form-control", @Placeholder = "On Waking Up.." })
 
-                                            </td>
-                                            <td>
-                                                <input type="button" id="addOnWakingUp" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
-                                            </td>
-                                        </tr>
-                                </table>
+                                                </td>
+                                                <td>
+                                                    <input type="button" id="addOnWakingUp" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -153,11 +155,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 grid-margin stretch-card">
+            <div class="col-12 col-sm-6 col-md-6 grid-margin stretch-card">
                 <div class="card bg-aqua">
                     <div class="card-body">
                         <div class="row">
-
                             @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
                             {
                                 <div class="col-md-12">
@@ -203,24 +204,26 @@
                             }
                             <div class="col-md-12">
                                 <h4 class="text-center">Breakfast</h4>
-                                <table class="table  table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Break fast<span style="color: red">*</span> </th>
-                                            <th>Action<span style="color: red">*</span> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TextBoxContainer">
-                                        <tr class="breakfastcontainer" id="breakfastrow">
-                                            <td>
-                                                @Html.TextAreaFor(m => m.Breakfast, new { @class = "Breakfast form-control", @Placeholder = "Break fast.." })
+                                <div class="table-responsive">
+                                    <table class="table  table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Break fast<span style="color: red">*</span> </th>
+                                                <th>Action<span style="color: red">*</span> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TextBoxContainer">
+                                            <tr class="breakfastcontainer" id="breakfastrow">
+                                                <td>
+                                                    @Html.TextAreaFor(m => m.Breakfast, new { @class = "Breakfast form-control", @Placeholder = "Break fast.." })
 
-                                            </td>
-                                            <td>
-                                                <input type="button" id="addBreakfast" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
-                                            </td>
-                                        </tr>
-                                </table>
+                                                </td>
+                                                <td>
+                                                    <input type="button" id="addBreakfast" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -233,7 +236,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6 grid-margin stretch-card">
+            <div class="col-12 col-sm-6 col-md-6 grid-margin stretch-card">
                 <div class="card bg-aqua">
                     <div class="card-body">
                         <div class="row">
@@ -282,24 +285,26 @@
                             }
                             <div class="col-md-12">
                                 <h4 class="text-center">Morning Snack</h4>
-                                <table class="table  table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Morning Snack<span style="color: red">*</span> </th>
-                                            <th>Action<span style="color: red">*</span> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TextBoxContainer">
-                                        <tr class="MorningSnackcontainer" id="MorningSnackrow">
-                                            <td>
-                                                @Html.TextAreaFor(m => m.MorningSnack, new { @class = "MorningSnack form-control", @Placeholder = "Morning Snack.." })
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Morning Snack<span style="color: red">*</span> </th>
+                                                <th>Action<span style="color: red">*</span> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TextBoxContainer">
+                                            <tr class="MorningSnackcontainer" id="MorningSnackrow">
+                                                <td>
+                                                    @Html.TextAreaFor(m => m.MorningSnack, new { @class = "MorningSnack form-control", @Placeholder = "Morning Snack.." })
 
-                                            </td>
-                                            <td>
-                                                <input type="button" id="addMorningSnack" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
-                                            </td>
-                                        </tr>
-                                </table>
+                                                </td>
+                                                <td>
+                                                    <input type="button" id="addMorningSnack" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -310,7 +315,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 grid-margin stretch-card">
+            <div class="col-12 col-sm-6 col-md-6 grid-margin stretch-card">
                 <div class="card bg-aqua">
                     <div class="card-body">
                         <div class="row">
@@ -359,24 +364,26 @@
                             }
                             <div class="col-md-12">
                                 <h4 class="text-center">Lunch</h4>
-                                <table class="table  table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Lunch<span style="color: red">*</span> </th>
-                                            <th>Action<span style="color: red">*</span> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TextBoxContainer">
-                                        <tr class="Lunchcontainer" id="Lunchrow">
-                                            <td>
-                                                @Html.TextAreaFor(m => m.Lunch, new { @class = "Lunch form-control", @Placeholder = "Lunch.." })
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Lunch<span style="color: red">*</span> </th>
+                                                <th>Action<span style="color: red">*</span> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TextBoxContainer">
+                                            <tr class="Lunchcontainer" id="Lunchrow">
+                                                <td>
+                                                    @Html.TextAreaFor(m => m.Lunch, new { @class = "Lunch form-control", @Placeholder = "Lunch.." })
 
-                                            </td>
-                                            <td>
-                                                <input type="button" id="addLunch" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
-                                            </td>
-                                        </tr>
-                                </table>
+                                                </td>
+                                                <td>
+                                                    <input type="button" id="addLunch" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -389,7 +396,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6 grid-margin stretch-card">
+            <div class="col-12 col-sm-6 col-md-6 grid-margin stretch-card">
                 <div class="card bg-aqua">
                     <div class="card-body">
                         <div class="row">
@@ -438,24 +445,26 @@
                             }
                             <div class="col-md-12">
                                 <h4 class="text-center">Evening Snack</h4>
-                                <table class="table  table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Evening Snack<span style="color: red">*</span> </th>
-                                            <th>Action<span style="color: red">*</span> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TextBoxContainer">
-                                        <tr class="EveningSnackcontainer" id="EveningSnackrow">
-                                            <td>
-                                                @Html.TextAreaFor(m => m.EveningSnack, new { @class = "EveningSnack form-control", @Placeholder = "Evening Snack.." })
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Evening Snack<span style="color: red">*</span> </th>
+                                                <th>Action<span style="color: red">*</span> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TextBoxContainer">
+                                            <tr class="EveningSnackcontainer" id="EveningSnackrow">
+                                                <td>
+                                                    @Html.TextAreaFor(m => m.EveningSnack, new { @class = "EveningSnack form-control", @Placeholder = "Evening Snack.." })
 
-                                            </td>
-                                            <td>
-                                                <input type="button" id="addEveningSnack" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
-                                            </td>
-                                        </tr>
-                                </table>
+                                                </td>
+                                                <td>
+                                                    <input type="button" id="addEveningSnack" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -466,7 +475,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 grid-margin stretch-card">
+            <div class="col-12 col-sm-6 col-md-6 grid-margin stretch-card">
                 <div class="card bg-aqua">
                     <div class="card-body">
                         <div class="row">
@@ -515,24 +524,26 @@
                             }
                             <div class="col-md-12">
                                 <h4 class="text-center">Dinner</h4>
-                                <table class="table  table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Dinner<span style="color: red">*</span> </th>
-                                            <th>Action<span style="color: red">*</span> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TextBoxContainer">
-                                        <tr class="Dinnercontainer" id="Dinnerrow">
-                                            <td>
-                                                @Html.TextAreaFor(m => m.Dinner, new { @class = "Dinner form-control", @Placeholder = "Dinner.." })
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Dinner<span style="color: red">*</span> </th>
+                                                <th>Action<span style="color: red">*</span> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TextBoxContainer">
+                                            <tr class="Dinnercontainer" id="Dinnerrow">
+                                                <td>
+                                                    @Html.TextAreaFor(m => m.Dinner, new { @class = "Dinner form-control", @Placeholder = "Dinner.." })
 
-                                            </td>
-                                            <td>
-                                                <input type="button" id="addDinner" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
-                                            </td>
-                                        </tr>
-                                </table>
+                                                </td>
+                                                <td>
+                                                    <input type="button" id="addDinner" data-toggle="tooltip" data-original-title="Add" value="Add" style="width:80px" class="btn bg-orange" />
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <br />
