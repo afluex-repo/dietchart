@@ -169,6 +169,87 @@ namespace DietChart.Controllers
             }
             return new JsonResult { Data = new { status = status } };
         }
+
+
+
+
+
+        [HttpPost]
+        public JsonResult UpdateDietChart(Admin userDetail)
+        {
+            var profile = Request.Files;
+            bool status = false;
+
+            var datavaluewaking = Request["wakingupdataValue"];
+            var jsswakingup = new JavaScriptSerializer();
+            var jdvwakingup = jsswakingup.Deserialize<dynamic>(Request["wakingupdataValue"]);
+            DataTable dtDietChartOnWakingUpDetails = new DataTable();
+            dtDietChartOnWakingUpDetails = JsonConvert.DeserializeObject<DataTable>(jdvwakingup["wakingupAddData"]);
+            userDetail.dtDietChartOnWakingUpDetails = dtDietChartOnWakingUpDetails;
+
+            var datavaluebreakfast = Request["BreakfastdataValue"];
+            var jssBreakfast = new JavaScriptSerializer();
+            var jdvBreakfast = jssBreakfast.Deserialize<dynamic>(Request["BreakfastdataValue"]);
+            DataTable dtDietChartBreakfastDetails = new DataTable();
+            dtDietChartBreakfastDetails = JsonConvert.DeserializeObject<DataTable>(jdvBreakfast["BreakfastAddData"]);
+            userDetail.dtDietChartBreakfastDetails = dtDietChartBreakfastDetails;
+
+            var datavaluemorningsnack = Request["MorningSnackdataValue"];
+            var jssMorningSnack = new JavaScriptSerializer();
+            var jdvMorningSnack = jssMorningSnack.Deserialize<dynamic>(Request["MorningSnackdataValue"]);
+            DataTable dtDietChartMorningSnackDetails = new DataTable();
+            dtDietChartMorningSnackDetails = JsonConvert.DeserializeObject<DataTable>(jdvMorningSnack["MorningSnackAddData"]);
+            userDetail.dtDietChartMorningSnackDetails = dtDietChartMorningSnackDetails;
+
+            var datavalueLunch = Request["LunchdataValue"];
+            var jssLunch = new JavaScriptSerializer();
+            var jdvLunch = jssLunch.Deserialize<dynamic>(Request["LunchdataValue"]);
+            DataTable dtDietChartLunchDetails = new DataTable();
+            dtDietChartLunchDetails = JsonConvert.DeserializeObject<DataTable>(jdvLunch["LunchAddData"]);
+            userDetail.dtDietChartLunchDetails = dtDietChartLunchDetails;
+
+            var datavalueEveningSnack = Request["EveningSnackdataValue"];
+            var jssEveningSnack = new JavaScriptSerializer();
+            var jdvEveningSnack = jssEveningSnack.Deserialize<dynamic>(Request["EveningSnackdataValue"]);
+            DataTable dtDietChartEveningSnackDetails = new DataTable();
+            dtDietChartEveningSnackDetails = JsonConvert.DeserializeObject<DataTable>(jdvEveningSnack["EveningSnackAddData"]);
+            userDetail.dtDietChartEveningSnackDetails = dtDietChartEveningSnackDetails;
+
+            var datavalueDinner = Request["DinnerdataValue"];
+            var jssDinner = new JavaScriptSerializer();
+            var jdvDinner = jssDinner.Deserialize<dynamic>(Request["DinnerdataValue"]);
+            DataTable dtDietChartDinnerDetails = new DataTable();
+            dtDietChartDinnerDetails = JsonConvert.DeserializeObject<DataTable>(jdvDinner["DinnerAddData"]);
+            userDetail.dtDietChartDinnerDetails = dtDietChartDinnerDetails;
+
+            userDetail.CreatedBy = Session["PK_AdminId"].ToString();
+            userDetail.Date = string.IsNullOrEmpty(userDetail.Date) ? null : Common.ConvertToSystemDate(userDetail.Date, "dd/MM/yyyy");
+            DataSet ds = new DataSet();
+            ds = userDetail.UpdateDietChart();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    TempData["DietChart"] = "DietChart Details updated successfully";
+                    status = true;
+                }
+                else if (ds.Tables[0].Rows[0][0].ToString() == "0")
+                {
+                    TempData["DietChart"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            else
+            {
+                TempData["DietChart"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+
+
+
+        
+
+
         public ActionResult DietChartList()
         {
             Admin model = new Admin();
@@ -265,26 +346,144 @@ namespace DietChart.Controllers
         }
 
 
-        public ActionResult DeleteOnWakingUp()
+        public ActionResult DeleteOnWakingUp(string OnWakingUpId)
         {
-            //Admin model = new Admin();
-            //DataSet ds = model.DeleteOnWakingUp();
-            //if (ds != null && ds.Tables[0].Rows.Count > 0)
-            //{
-            //    if (ds.Tables[0].Rows[0][0].ToString() == "1")
-            //    {
-            //        TempData["msg"] = "DietChart Details saved successfully";
-            //    }
-            //    else if (ds.Tables[0].Rows[0][0].ToString() == "0")
-            //    {
-            //        TempData["msg"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
-            //    }
-            //}
-            //else
-            //{
-            //    TempData["msg"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
-            //}
-            return View();
+            Admin model = new Admin();
+            model.OnWakingUpId = OnWakingUpId;
+            model.CreatedBy = Session["PK_AdminId"].ToString();
+            DataSet ds = model.DeleteOnWakingUp();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    TempData["onwakingup"] = "On Waking Up details deleted successfully";
+                }
+                else if (ds.Tables[0].Rows[0][0].ToString() == "0")
+                {
+                    TempData["onwakingup"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            else
+            {
+                TempData["onwakingup"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+            }
+            return RedirectToAction("DietChart", "Admin");
+        }
+
+        public ActionResult DeleteBreakfast(string BreakfastID)
+        {
+            Admin model = new Admin();
+            model.BreakfastID = BreakfastID;
+            model.CreatedBy = Session["PK_AdminId"].ToString();
+            DataSet ds = model.DeleteBreakfast();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    TempData["Breakfast"] = "Breakfast details deleted successfully";
+                }
+                else if (ds.Tables[0].Rows[0][0].ToString() == "0")
+                {
+                    TempData["Breakfast"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            else
+            {
+                TempData["Breakfast"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+            }
+            return RedirectToAction("DietChart", "Admin");
+        }
+        public ActionResult DeleteMorningSnack(string MorningSnackID)
+        {
+            Admin model = new Admin();
+            model.MorningSnackID = MorningSnackID;
+            model.CreatedBy = Session["PK_AdminId"].ToString();
+            DataSet ds = model.DeleteMorningSnack();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    TempData["MorningSnack"] = "Morning Snack details deleted successfully";
+                }
+                else if (ds.Tables[0].Rows[0][0].ToString() == "0")
+                {
+                    TempData["MorningSnack"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            else
+            {
+                TempData["MorningSnack"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+            }
+            return RedirectToAction("DietChart", "Admin");
+        }
+        public ActionResult DeleteLunch(string LunchID)
+        {
+            Admin model = new Admin();
+            model.LunchID = LunchID;
+            model.CreatedBy = Session["PK_AdminId"].ToString();
+            DataSet ds = model.DeleteLunch();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    TempData["Lunch"] = "Lunch details deleted successfully";
+                }
+                else if (ds.Tables[0].Rows[0][0].ToString() == "0")
+                {
+                    TempData["Lunch"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            else
+            {
+                TempData["Lunch"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+            }
+            return RedirectToAction("DietChart", "Admin");
+        }
+        public ActionResult DeleteEveningSnack(string EveningSnackID)
+        {
+            Admin model = new Admin();
+            model.EveningSnackID = EveningSnackID;
+            model.CreatedBy = Session["PK_AdminId"].ToString();
+            DataSet ds = model.DeleteEveningSnack();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    TempData["EveningSnack"] = "Evening Snack details deleted successfully";
+                }
+                else if (ds.Tables[0].Rows[0][0].ToString() == "0")
+                {
+                    TempData["EveningSnack"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            else
+            {
+                TempData["EveningSnack"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+            }
+            return RedirectToAction("DietChart", "Admin");
+        }
+        public ActionResult DeleteDinner(string DinnerID)
+        {
+            Admin model = new Admin();
+            model.DinnerID = DinnerID;
+            model.CreatedBy = Session["PK_AdminId"].ToString();
+            DataSet ds = model.DeleteDinner();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    TempData["Dinner"] = "Dinner details deleted successfully";
+                }
+                else if (ds.Tables[0].Rows[0][0].ToString() == "0")
+                {
+                    TempData["Dinner"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            else
+            {
+                TempData["Dinner"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+            }
+            return RedirectToAction("DietChart", "Admin");
         }
 
         

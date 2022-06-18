@@ -213,3 +213,4 @@ E:\Repository\dietchart\DietChart\bin\System.Web.Http.xml
 E:\Repository\dietchart\DietChart\bin\System.Web.Http.WebHost.xml
 E:\Repository\dietchart\DietChart\obj\Debug\DietChart.dll
 E:\Repository\dietchart\DietChart\obj\Debug\DietChart.pdb
+E:\Repository\dietchart\DietChart\obj\Debug\DietChart.csprojResolveAssemblyReference.cache
