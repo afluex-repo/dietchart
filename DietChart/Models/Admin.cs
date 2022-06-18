@@ -48,6 +48,7 @@ namespace DietChart.Models
         public string LunchID { get; set; }
         public string EveningSnackID { get; set; }
         public string DinnerID { get; set; }
+        public decimal Newuser { get; set; }
 
 
 
@@ -75,10 +76,10 @@ namespace DietChart.Models
         }
 
 
-        public DataSet UpdateDietChart()
+        public DataSet UpdateDietChartDetails()
         {
             SqlParameter[] para = {
-                 new SqlParameter("@DietChartID",Fk_DietChartId),
+                                      new SqlParameter("@DietChartID",Fk_DietChartId),
                                       new SqlParameter("@Name",Name),
                                        new SqlParameter("@Age", Age),
                                        new SqlParameter("@Weight", Weight),

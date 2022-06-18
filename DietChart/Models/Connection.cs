@@ -15,8 +15,6 @@ namespace DietChart.Models
         {
             try
             {
-
-                //connectionString="Data Source=DESKTOP-M13K57S\\SQLEXPRESS;Initial Catalog=dietchartdb;Integrated Security=True;";
                 connectionString = "Data Source=103.48.51.111,1232;Initial Catalog=dietchartdb;User Id=dietchartuser; Password =diet@#%18~;Integrated Security=false;";
             }
             catch (Exception)
