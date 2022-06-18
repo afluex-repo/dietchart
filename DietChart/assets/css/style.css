@@ -20692,6 +20692,7 @@ div.tagsinput {
       .sidebar .nav .nav-item .collapse {
         z-index: 999; }
       .sidebar .nav .nav-item .nav-link {
+          margin-top:10px;
         display: -webkit-flex;
         display: flex;
         -webkit-align-items: center;
