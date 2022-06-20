@@ -585,9 +585,6 @@
             $("#btnfinalsubmit").val("Save");
         }
 
-
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
             $('#addOnWakingUp').click(function () {
                 debugger;
                 var isAllValid = true;
@@ -617,49 +614,11 @@
             $('#wakinguptableDetails').on('click', '.remove', function () {
                 $(this).parents('tr').remove();
             });
-        }
-        else {
-            $('#addOnWakingUp').click(function () {
-                debugger;
-                var isAllValid = true;
-                //if (!($('#OnWakingUp').val().trim() != '' && ($('#OnWakingUp').val().trim()))) {
-                //    $("#OnWakingUp").addClass('errortext');
-                //    $('#OnWakingUp').focus();
-                //    isAllValid = false;
-                //}
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#walkinrow').clone().removeAttr('id');
-                    $('.OnWakingUp', $newRow).removeClass('errortext').prop('disabled', true).val($('#OnWakingUp').val());
-                    //Replace add button with remove button
-                    $('#addOnWakingUp', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#OnWakingUp,#addOnWakingUp', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#wakinguptableDetails').append($newRow);
-                    //clear select data
-                    $('#OnWakingUp').val('');
-                    $('#wakinguptableDetailsError').empty();
-                }
-
-            })
-            //remove button click event
-            $('#wakinguptableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-
-
-        }
-
-
-
+        
+      
      
         //////breakfast statrt
 
-
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
             $('#addBreakfast').click(function () {
                 debugger;
                 var isAllValid = true;
@@ -689,47 +648,15 @@
             $('#BreakfasttableDetails').on('click', '.remove', function () {
                 $(this).parents('tr').remove();
             });
-        }
-        else
-        {
-            $('#addBreakfast').click(function () {
-                debugger;
-                var isAllValid = true;
-                //if (!($('#Breakfast').val().trim() != '' && ($('#Breakfast').val().trim()))) {
-                //    $("#Breakfast").addClass('errortext');
-                //    $('#Breakfast').focus();
-                //    isAllValid = false;
-                //}
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#breakfastrow').clone().removeAttr('id');
-                    $('.Breakfast', $newRow).removeClass('errortext').prop('disabled', true).val($('#Breakfast').val());
-                    //Replace add button with remove button
-                    $('#addBreakfast', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#Breakfast,#addBreakfast', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#BreakfasttableDetails').append($newRow);
-                    //clear select data
-                    $('#Breakfast').val('');
-                    $('#BreakfasttableDetailsError').empty();
-                }
-
-            })
-            //remove button click event
-            $('#BreakfasttableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        }
+        
+      
+        
 
 
       
 
         ////////////MorningSnack
 
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
             $('#addMorningSnack').click(function () {
                 debugger;
                 var isAllValid = true;
@@ -759,52 +686,14 @@
             $('#MorningSnacktableDetails').on('click', '.remove', function () {
                 $(this).parents('tr').remove();
             });
-        }
-        else
-        {
-            $('#addMorningSnack').click(function () {
-                debugger;
-                var isAllValid = true;
-                //if (!($('#MorningSnack').val().trim() != '' && ($('#MorningSnack').val().trim()))) {
-                //    $("#MorningSnack").addClass('errortext');
-                //    $('#MorningSnack').focus();
-                //    isAllValid = false;
-                //}
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#MorningSnackrow').clone().removeAttr('id');
-                    $('.MorningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#MorningSnack').val());
-                    //Replace add button with remove button
-                    $('#addMorningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#MorningSnack,#addMorningSnack', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#MorningSnacktableDetails').append($newRow);
-                    //clear select data
-                    $('#MorningSnack').val('');
-                    $('#MorningSnacktableDetailsError').empty();
-                }
-
-            })
-            //remove button click event
-            $('#MorningSnacktableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        }
-
-
-
-
-
-
+        
+     
+        
 
 
      
         ////////////Lunch
 
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
             $('#addLunch').click(function () {
                 debugger;
                 var isAllValid = true;
@@ -834,49 +723,13 @@
             $('#LunchtableDetails').on('click', '.remove', function () {
                 $(this).parents('tr').remove();
             });
-        }
-        else
-        {
-            $('#addLunch').click(function () {
-                debugger;
-                var isAllValid = true;
-                //if (!($('#Lunch').val().trim() != '' && ($('#Lunch').val().trim()))) {
-                //    $("#Lunch").addClass('errortext');
-                //    $('#Lunch').focus();
-                //    isAllValid = false;
-                //}
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#Lunchrow').clone().removeAttr('id');
-                    $('.Lunch', $newRow).removeClass('errortext').prop('disabled', true).val($('#Lunch').val());
-                    //Replace add button with remove button
-                    $('#addLunch', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#Lunch,#addLunch', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#LunchtableDetails').append($newRow);
-                    //clear select data
-                    $('#Lunch').val('');
-                    $('#LunchtableDetailsError').empty();
-                }
-
-            })
-            //remove button click event
-            $('#LunchtableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        }
-
-
-
-
+        
+       
 
        
         ////////////Evening Snack
 
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
+     
             $('#addEveningSnack').click(function () {
                 debugger;
                 var isAllValid = true;
@@ -906,48 +759,13 @@
             $('#EveningSnacktableDetails').on('click', '.remove', function () {
                 $(this).parents('tr').remove();
             });
-        }
-        else
-        {
-            $('#addEveningSnack').click(function () {
-                debugger;
-                var isAllValid = true;
-                //if (!($('#EveningSnack').val().trim() != '' && ($('#EveningSnack').val().trim()))) {
-                //    $("#EveningSnack").addClass('errortext');
-                //    $('#EveningSnack').focus();
-                //    isAllValid = false;
-                //}
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#EveningSnackrow').clone().removeAttr('id');
-                    $('.EveningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#EveningSnack').val());
-                    //Replace add button with remove button
-                    $('#addEveningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#EveningSnack,#addEveningSnack', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#EveningSnacktableDetails').append($newRow);
-                    //clear select data
-                    $('#EveningSnack').val('');
-                    $('#EveningSnacktableDetailsError').empty();
-                }
-
-            })
-            //remove button click event
-            $('#EveningSnacktableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        }
-
-
-
+       
+        
 
        
         ////////////Dinner
         
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
+       
             $('#addDinner').click(function () {
                 debugger;
                 var isAllValid = true;
@@ -977,39 +795,8 @@
             $('#DinnertableDetails').on('click', '.remove', function () {
                 $(this).parents('tr').remove();
             });
-        }
-        else
-        {
-            $('#addDinner').click(function () {
-                debugger;
-                var isAllValid = true;
-                //if (!($('#Dinner').val().trim() != '' && ($('#Dinner').val().trim()))) {
-                //    $("#Dinner").addClass('errortext');
-                //    $('#Dinner').focus();
-                //    isAllValid = false;
-                //}
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#Dinnerrow').clone().removeAttr('id');
-                    $('.Dinner', $newRow).removeClass('errortext').prop('disabled', true).val($('#Dinner').val());
-                    //Replace add button with remove button
-                    $('#addDinner', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#Dinner,#addDinner', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#DinnertableDetails').append($newRow);
-                    //clear select data
-                    $('#Dinner').val('');
-                    $('#DinnertableDetailsError').empty();
-                }
-
-            })
-            //remove button click event
-            $('#DinnertableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        }
+       
+        
 
 
 
@@ -1063,8 +850,7 @@
         }
 
 
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
+       
             $('#wakinguptableDetailsError').text('');
             var wakinguplist = [];
             var wakinguperrorItemCount = 0;
@@ -1092,49 +878,16 @@
                 $("#divload").css({ 'display': 'none' });
                 return false;
             }
-        }
-        else {
-
-            //$('#wakinguptableDetailsError').text('');
-            var wakinguplist = [];
-            var wakinguperrorItemCount = 0;
-            $('#wakinguptableDetails tr').each(function (index, ele) {
-                //if (
-                //    $('.OnWakingUp', this).val() == "") {
-                //    wakinguperrorItemCount++;
-                //    $(this).addClass('error');
-                //}
-                //else {
-                var wakinguporderItem = {
-                    OnWakingUp: $('.OnWakingUp', this).val()
-                }
-                wakinguplist.push(wakinguporderItem);
-                //}
-            })
-            console.log(wakinguplist)
-            //if (wakinguperrorItemCount > 0) {
-            //    $('#wakinguptableDetailsError').text(wakinguperrorItemCount + " invalid entry in order item list.");
-            //    isAllValid = false;
-            //}
-
-            //if (wakinguplist.length == 0) {
-            //    $('#wakinguptableDetailsError').text('At least 1 row data required in on waking up chart.');
-            //    isAllValid = false;
-            //    $("#divload").css({ 'display': 'none' });
-            //    return false;
-            //}
-        }
+        
+       
 
         //////////Breakfast
 
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
             $('#BreakfasttableDetailsError').text('');
             var Breakfastlist = [];
             var BreakfasterrorItemCount = 0;
             $('#BreakfasttableDetails tr').each(function (index, ele) {
-                if (
-                    $('.Breakfast', this).val() == "") {
+                if ($('.Breakfast', this).val() == "") {
                     BreakfasterrorItemCount++;
                     $(this).addClass('error');
                 } else {
@@ -1156,46 +909,13 @@
                 $("#divload").css({ 'display': 'none' });
                 return false;
             }
-        }
-        else
-        {
-            //$('#BreakfasttableDetailsError').text('');
-            var Breakfastlist = [];
-            var BreakfasterrorItemCount = 0;
-            $('#BreakfasttableDetails tr').each(function (index, ele) {
-                //if (
-                //    $('.Breakfast', this).val() == "") {
-                //    BreakfasterrorItemCount++;
-                //    $(this).addClass('error');
-                //} else {
-                    var BreakfastorderItem = {
-                        Breakfast: $('.Breakfast', this).val()
-                    }
-                    Breakfastlist.push(BreakfastorderItem);
-                ///////}
-            })
-            console.log(Breakfastlist)
-            //if (BreakfasterrorItemCount > 0) {
-            //    $('#BreakfasttableDetailsError').text(BreakfasterrorItemCount + " invalid entry in order item list.");
-            //    isAllValid = false;
-            //}
-
-            //if (Breakfastlist.length == 0) {
-            //    $('#BreakfasttableDetailsError').text('At least 1 row data required in Break fast.');
-            //    isAllValid = false;
-            //    $("#divload").css({ 'display': 'none' });
-            //    return false;
-            //}
-        }
-
-
-    
+        
+       
 
         ////////////////MorningSnack
 
 
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
+      
             $('#MorningSnacktableDetailsError').text('');
             var MorningSnacklist = [];
             var MorningSnackerrorItemCount = 0;
@@ -1223,47 +943,7 @@
                 $("#divload").css({ 'display': 'none' });
                 return false;
             }
-        }
-        else
-        {
-            //$('#MorningSnacktableDetailsError').text('');
-            var MorningSnacklist = [];
-            var MorningSnackerrorItemCount = 0;
-            $('#MorningSnacktableDetails tr').each(function (index, ele) {
-                //if (
-                //    $('.MorningSnack', this).val() == "") {
-                //    MorningSnackerrorItemCount++;
-                //    $(this).addClass('error');
-                //} else {
-                    var MorningSnackorderItem = {
-                        MorningSnack: $('.MorningSnack', this).val()
-                    }
-                    MorningSnacklist.push(MorningSnackorderItem);
-                //}
-            })
-            console.log(MorningSnacklist)
-            //if (MorningSnackerrorItemCount > 0) {
-            //    $('#MorningSnacktableDetailsError').text(MorningSnackerrorItemCount + " invalid entry in order item list.");
-            //    isAllValid = false;
-            //}
-
-            //if (MorningSnacklist.length == 0) {
-            //    $('#MorningSnacktableDetailsError').text('At least 1 row data required in Morning Snack.');
-            //    isAllValid = false;
-            //    $("#divload").css({ 'display': 'none' });
-            //    return false;
-            //}
-        }
-
-
-       
-
         ///////////////////Lunch
-
-
-        
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
             $('#LunchtableDetailsError').text('');
             var Lunchlist = [];
             var LuncherrorItemCount = 0;
@@ -1291,50 +971,8 @@
                 $("#divload").css({ 'display': 'none' });
                 return false;
             }
-        }
-        else
-        {
-            //$('#LunchtableDetailsError').text('');
-            var Lunchlist = [];
-            var LuncherrorItemCount = 0;
-            $('#LunchtableDetails tr').each(function (index, ele) {
-                //if (
-                //    $('.Lunch', this).val() == "") {
-                //    LuncherrorItemCount++;
-                //    $(this).addClass('error');
-                //} else {
-                    var LunchorderItem = {
-                        Lunch: $('.Lunch', this).val()
-                    }
-                    Lunchlist.push(LunchorderItem);
-                //}
-            })
-            console.log(Lunchlist)
-            //if (LuncherrorItemCount > 0) {
-            //    $('#LunchtableDetailsError').text(LuncherrorItemCount + " invalid entry in order item list.");
-            //    isAllValid = false;
-            //}
-
-            //if (Lunchlist.length == 0) {
-            //    $('#LunchtableDetailsError').text('At least 1 row data required in Lunch.');
-            //    isAllValid = false;
-            //    $("#divload").css({ 'display': 'none' });
-            //    return false;
-            //}
-        }
-
-
-
-
-
-
-
-        
 
         ///////////////////EveningSnack
-
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
             $('#EveningSnacktableDetailsError').text('');
             var EveningSnacklist = [];
             var EveningSnackerrorItemCount = 0;
@@ -1362,42 +1000,8 @@
                 $("#divload").css({ 'display': 'none' });
                 return false;
             }
-        }
-        else
-        {
-            //$('#EveningSnacktableDetailsError').text('');
-            var EveningSnacklist = [];
-            var EveningSnackerrorItemCount = 0;
-            $('#EveningSnacktableDetails tr').each(function (index, ele) {
-                //if (
-                //    $('.EveningSnack', this).val() == "") {
-                //    EveningSnackerrorItemCount++;
-                //    $(this).addClass('error');
-                //} else {
-                    var EveningSnackorderItem = {
-                        EveningSnack: $('.EveningSnack', this).val()
-                    }
-                    EveningSnacklist.push(EveningSnackorderItem);
-                //}
-            })
-            console.log(EveningSnacklist)
-            //if (EveningSnackerrorItemCount > 0) {
-            //    $('#EveningSnacktableDetailsError').text(EveningSnackerrorItemCount + " invalid entry in order item list.");
-            //    isAllValid = false;
-            //}
-
-            //if (EveningSnacklist.length == 0) {
-            //    $('#EveningSnacktableDetailsError').text('At least 1 row data required in Evening Snack.');
-            //    isAllValid = false;
-            //    $("#divload").css({ 'display': 'none' });
-            //    return false;
-            //}
-        }
-
         ///////////////////Dinner
 
-        if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null)
-        {
             $('#DinnertableDetailsError').text('');
             var Dinnerlist = [];
             var DinnererrorItemCount = 0;
@@ -1426,38 +1030,6 @@
                 $("#divload").css({ 'display': 'none' });
                 return false;
             }
-        }
-        else
-        {
-            //$('#DinnertableDetailsError').text('');
-            var Dinnerlist = [];
-            var DinnererrorItemCount = 0;
-            $('#DinnertableDetails tr').each(function (index, ele) {
-                //if (
-                //    $('.Dinner', this).val() == "") {
-                //    DinnererrorItemCount++;
-                //    $(this).addClass('error');
-                //} else {
-                    var DinnerorderItem = {
-                        Dinner: $('.Dinner', this).val()
-                    }
-                    Dinnerlist.push(DinnerorderItem);
-               // }
-            })
-            console.log(Dinnerlist)
-            //if (DinnererrorItemCount > 0) {
-            //    $('#DinnertableDetailsError').text(DinnererrorItemCount + " invalid entry in order item list.");
-            //    isAllValid = false;
-            //}
-
-            //if (Dinnerlist.length == 0) {
-            //    $('#DinnertableDetailsError').text('At least 1 row data required in Dinner.');
-            //    isAllValid = false;
-            //    $("#divload").css({ 'display': 'none' });
-            //    return false;
-            //}
-        }
-
         if (isAllValid) {
             debugger;
             var wakingupdata = {
@@ -1499,21 +1071,9 @@
             formData.append("LunchdataValue", JSON.stringify(Lunchdata));
             formData.append("EveningSnackdataValue", JSON.stringify(EveningSnackdata));
             formData.append("DinnerdataValue", JSON.stringify(Dinnerdata));
-
-            action = "";
-            message = '';
-            if ($("#Fk_DietChartId").val() == "" || $("#Fk_DietChartId").val() == null) {
-
-                action = '@Url.Action("SaveDietChart", "Admin")'
-                //message = 'Record saved successfully';
-            }
-            else {
-                action = '@Url.Action("UpdateDietChart", "Admin")'
-                //message = 'Record updated successfully';
-            }
             $.ajax({
                 type: 'POST',
-                url: action,
+                url: 'SaveDietChart',
                 data: formData,
                 cache: false,
                 contentType: false,
