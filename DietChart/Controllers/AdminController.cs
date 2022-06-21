@@ -96,6 +96,15 @@ namespace DietChart.Controllers
                         lst.Add(obj);
                     }
                     model.lstdinner = lst;
+
+                    foreach (DataRow dr in ds.Tables[7].Rows)
+                    {
+                        Admin obj = new Admin();
+                        obj.NoteId = dr["PK_NoteID"].ToString();
+                        obj.Note = dr["Note"].ToString();
+                        lst.Add(obj);
+                    }
+                    model.lstNote = lst;
                 }
             }
             return View(model);
@@ -401,22 +410,19 @@ namespace DietChart.Controllers
                         lst.Add(obj);
                     }
                     model.lstdinner = lst;
-
-
+                    
                     foreach (DataRow dr in ds.Tables[7].Rows)
                     {
                         Admin obj = new Admin();
+                        obj.NoteId = dr["PK_NoteID"].ToString();
                         obj.Note = dr["Note"].ToString();
                         lst.Add(obj);
                     }
                     model.lstNote = lst;
-
                 }
             }
             return View(model);
         }
-
-
         public ActionResult DeleteOnWakingUp(string OnWakingUpId)
         {
             Admin model = new Admin();
@@ -438,9 +444,8 @@ namespace DietChart.Controllers
             {
                 TempData["onwakingup"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
             }
-            return RedirectToAction("DietChart", "Admin");
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult DeleteBreakfast(string BreakfastID)
         {
             Admin model = new Admin();
@@ -462,7 +467,7 @@ namespace DietChart.Controllers
             {
                 TempData["Breakfast"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
             }
-            return RedirectToAction("DietChart", "Admin");
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DeleteMorningSnack(string MorningSnackID)
         {
@@ -485,7 +490,7 @@ namespace DietChart.Controllers
             {
                 TempData["MorningSnack"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
             }
-            return RedirectToAction("DietChart", "Admin");
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DeleteLunch(string LunchID)
         {
@@ -508,7 +513,7 @@ namespace DietChart.Controllers
             {
                 TempData["Lunch"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
             }
-            return RedirectToAction("DietChart", "Admin");
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DeleteEveningSnack(string EveningSnackID)
         {
@@ -531,7 +536,7 @@ namespace DietChart.Controllers
             {
                 TempData["EveningSnack"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
             }
-            return RedirectToAction("DietChart", "Admin");
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DeleteDinner(string DinnerID)
         {
@@ -554,11 +559,31 @@ namespace DietChart.Controllers
             {
                 TempData["Dinner"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
             }
-            return RedirectToAction("DietChart", "Admin");
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-
-
+        public ActionResult DeleteNote(string NoteId)
+        {
+            Admin model = new Admin();
+            model.NoteId = NoteId;
+            model.CreatedBy = Session["PK_AdminId"].ToString();
+            DataSet ds = model.DeleteNote();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    TempData["Note"] = "Note details deleted successfully";
+                }
+                else if (ds.Tables[0].Rows[0][0].ToString() == "0")
+                {
+                    TempData["Note"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            else
+            {
+                TempData["Note"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult DeleteDietChart(string Id)
         {
             Admin model = new Admin();
@@ -578,7 +603,7 @@ namespace DietChart.Controllers
             }
             else
             {
-                TempData["Dinner"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                TempData["msg"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
             }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
