@@ -85,7 +85,6 @@
                             </td>
                             <td>
                                 <b>Weight :</b> @ViewBag.Weight Kg.
-
                             </td>
                             <td>
                                 <b>Height :</b> @ViewBag.Height Feet.
@@ -101,7 +100,6 @@
                                 <b>BMI :</b>  @ViewBag.BMI
                             </td>
                         </tr>
-
                     </table>
                 </div>
                 <div class="table-responsive">
@@ -135,7 +133,6 @@
                                     }
                                 }
                             </td>
-
                         </tr>
                         <tr class="table-info"><td style="background:#bee5eb !important;"><b>Breakfast</b></td></tr>
                         <tr>
@@ -201,35 +198,30 @@
                         </tr>
                     </table>
                 </div>
-
                 <div class="row">
                     <div class="col-sm-6 col-6">
-                       
-                            <b>Note :</b><br />
-
-                            @if (Model != null)
+                        <b>Note :</b><br />
+                        @if (Model != null)
+                        {
+                            if (Model.lstNote != null)
                             {
-                                if (Model.lstNote != null)
+                                char i = '*';
+                                foreach (var Item in Model.lstNote)
                                 {
-                                    foreach (var Item in Model.lstNote)
+                                    if (Item.NoteId != null && Item.NoteId != "")
                                     {
-                                        <p>@Item.Note</p>
+                                    <span><b>@i</b></span>  <span>@Item.Note</span><br />
                                     }
                                 }
                             }
-
-
-                            @*<span> * Drink Plenty Of Water.</span><br />
-                            <span>* No Soya Product, Broccoli, Cabbage, Cauliflower.</span><br />
-                            <span>* Low Sodium Diet</span>*@
-                          
-                        </div>
-                        <div class="col-sm-6 text-right col-6">
-                            <p>  Dt. Bhagyashree <br />Director</><br />It's Healthy<br /> Mobile-708030747</p>
-                        </div>
+                        }
+                    </div>
+                    <div class="col-sm-6 text-right col-6">
+                        <p>  Dt. Bhagyashree <br />Director</><br />It's Healthy<br /> Mobile-708030747</p>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>

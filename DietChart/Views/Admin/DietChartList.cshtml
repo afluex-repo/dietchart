@@ -29,7 +29,6 @@
 <div class="content-wrapper">
     @using (Html.BeginForm("DietChartList", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
     {
-
         <div class="col-12 grid-margin stretch-card">
             <div class="card bg-aqua">
                 <div class="card-body">
@@ -89,7 +88,6 @@
                 </div>
             </div>
         </div>
-
     }
 </div>
 
@@ -97,7 +95,7 @@
     function DeleteDietChart(Id)
     {
         debugger;
-        var r = confirm('Are you sure you want to delete this dietchart details ?');
+        var r = confirm('Are you sure you want to delete this diet chart details ?');
         if(r==true)
         {
             $.ajax({

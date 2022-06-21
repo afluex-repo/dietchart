@@ -40,7 +40,7 @@
                     <div class="row mb-4">
 
                         <input type="hidden" id="Fk_DietChartId" name="Fk_DietChartId" value="@Model.Fk_DietChartId" />
-                        <input type="hidden" id="NewUser" name="Newuser" value="@Model.Newuser"/>
+                        <input type="hidden" id="NewUser" name="Newuser" value="@Model.Newuser" />
                         <div class="col-sm-3">
                             <label for="exampleInputName1">Name <span style="color: red">*</span></label>
                             @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @Placeholder = "Name", @onkeypress = "return onlyAlphabets();" })
@@ -63,6 +63,7 @@
                         </div>
                         <div class="col-sm-3">
                             <label for="exampleInputEmail3">Diet Preference <span style="color: red">*</span></label>
+                            <input type="hidden" value="@Model.DietPreference" id="Diet" />
                             <select id="DietPreference" name="DietPreference" class="form-control">
                                 <option value="0">-select-</option>
                                 <option value="Vegetarian">Vegetarian</option>
@@ -95,7 +96,7 @@
                                         <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
                                             <thead>
                                                 <tr>
-                                                    <th>Sr No.</th>
+                                                    <th></th>
                                                     <th>Name</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -105,20 +106,19 @@
                                                 {
                                                     if (Model.lstonwakingup != null)
                                                     {
-                                                        int i = 1;
+                                                        char i = '*';
                                                         foreach (var Item in Model.lstonwakingup)
                                                         {
                                                             if (Item.OnWakingUpId != null && Item.OnWakingUpId != "")
                                                             {
                                                                 <tr class="text-left">
-                                                                    <td>@i</td>
+                                                                    <td><h4>@i</h4></td>
                                                                     <td>@Item.OnWakingUp</td>
                                                                     <td>
                                                                         <a href="javascript:void(0);" class="btn bg-orange btn-sm" onclick="DeleteOnWakingUp('@Item.OnWakingUpId')">Delete</a>
                                                                     </td>
                                                                 </tr>
                                                             }
-                                                            i = i + 1;
                                                         }
                                                     }
                                                 }
@@ -175,7 +175,7 @@
                                         <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
                                             <thead>
                                                 <tr>
-                                                    <th>Sr No.</th>
+                                                    <th></th>
                                                     <th>Name</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -185,20 +185,19 @@
                                                 {
                                                     if (Model.lstbreakfast != null)
                                                     {
-                                                        int i = 1;
+                                                        char i = '*';
                                                         foreach (var Item in Model.lstbreakfast)
                                                         {
                                                             if (Item.BreakfastID != null && Item.BreakfastID != "")
                                                             {
                                                                 <tr class="text-left">
-                                                                    <td>@i</td>
+                                                                    <td><h4>@i</h4></td>
                                                                     <td>@Item.Breakfast</td>
                                                                     <td>
                                                                         <a href="javascript:void(0);" class="btn bg-orange btn-sm" onclick="DeleteBreakfast('@Item.BreakfastID')">Delete</a>
                                                                     </td>
                                                                 </tr>
                                                             }
-                                                            i = i + 1;
                                                         }
                                                     }
                                                 }
@@ -256,7 +255,7 @@
                                         <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
                                             <thead>
                                                 <tr>
-                                                    <th>Sr No.</th>
+                                                    <th></th>
                                                     <th>Name</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -266,13 +265,13 @@
                                                 {
                                                     if (Model.lstmorningsnack != null)
                                                     {
-                                                        int i = 1;
+                                                        char i = '*';
                                                         foreach (var Item in Model.lstmorningsnack)
                                                         {
                                                             if (Item.MorningSnackID != null && Item.MorningSnackID != "")
                                                             {
                                                                 <tr class="text-left">
-                                                                    <td>@i</td>
+                                                                    <td><h4>@i</h4></td>
                                                                     <td>@Item.MorningSnack</td>
                                                                     <td>
 
@@ -281,7 +280,6 @@
                                                                     </td>
                                                                 </tr>
                                                             }
-                                                            i = i + 1;
                                                         }
                                                     }
                                                 }
@@ -337,7 +335,7 @@
                                         <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
                                             <thead>
                                                 <tr>
-                                                    <th>Sr No.</th>
+                                                    <th></th>
                                                     <th>Name</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -347,20 +345,19 @@
                                                 {
                                                     if (Model.lstlunch != null)
                                                     {
-                                                        int i = 1;
+                                                        char i = '*';
                                                         foreach (var Item in Model.lstlunch)
                                                         {
                                                             if (Item.LunchID != null && Item.LunchID != "")
                                                             {
                                                                 <tr class="text-left">
-                                                                    <td>@i</td>
+                                                                    <td><h4>@i</h4></td>
                                                                     <td>@Item.Lunch</td>
                                                                     <td>
                                                                         <a href="javascript:void(0);" class="btn bg-orange btn-sm" onclick="DeleteLunch('@Item.LunchID')">Delete</a>
                                                                     </td>
                                                                 </tr>
                                                             }
-                                                            i = i + 1;
                                                         }
                                                     }
                                                 }
@@ -418,7 +415,7 @@
                                         <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
                                             <thead>
                                                 <tr>
-                                                    <th>Sr No.</th>
+                                                    <th></th>
                                                     <th>Name</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -428,20 +425,19 @@
                                                 {
                                                     if (Model.lsteveningsnack != null)
                                                     {
-                                                        int i = 1;
+                                                        char i = '*';
                                                         foreach (var Item in Model.lsteveningsnack)
                                                         {
                                                             if (Item.EveningSnackID != null && Item.EveningSnackID != "")
                                                             {
                                                                 <tr class="text-left">
-                                                                    <td>@i</td>
+                                                                    <td><h4>@i</h4></td>
                                                                     <td>@Item.EveningSnack</td>
                                                                     <td>
                                                                         <a href="javascript:void(0);" class="btn bg-orange btn-sm" onclick="DeleteEveningSnack('@Item.EveningSnackID')">Delete</a>
                                                                     </td>
                                                                 </tr>
                                                             }
-                                                            i = i + 1;
                                                         }
                                                     }
                                                 }
@@ -497,7 +493,7 @@
                                         <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
                                             <thead>
                                                 <tr>
-                                                    <th>Sr No.</th>
+                                                    <th></th>
                                                     <th>Name</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -507,20 +503,19 @@
                                                 {
                                                     if (Model.lstdinner != null)
                                                     {
-                                                        int i = 1;
+                                                        char i = '*';
                                                         foreach (var Item in Model.lstdinner)
                                                         {
                                                             if (Item.DinnerID != null && Item.DinnerID != "")
                                                             {
                                                                 <tr class="text-left">
-                                                                    <td>@i</td>
+                                                                    <td><h4>@i</h4></td>
                                                                     <td>@Item.Dinner</td>
                                                                     <td>
                                                                         <a href="javascript:void(0);" class="btn bg-orange btn-sm" onclick="DeleteDinner('@Item.DinnerID')">Delete</a>
                                                                     </td>
                                                                 </tr>
                                                             }
-                                                            i = i + 1;
                                                         }
                                                     }
                                                 }
@@ -562,11 +557,51 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-12 grid-margin stretch-card">
                 <div class="card bg-aqua">
                     <div class="card-body">
                         <div class="row">
+                            @if (Model.Fk_DietChartId != null && Model.Fk_DietChartId != "")
+                            {
+                                <div class="col-md-12">
+                                    <span class="text-danger">
+                                        @TempData["Note"]
+                                    </span>
+                                    <div class="table-responsive">
+                                        <table id="file_export" class="table table-striped mb-2" style="border:1px solid black;">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null)
+                                                {
+                                                    if (Model.lstNote != null)
+                                                    {
+                                                        Char i = '*';
+                                                        foreach (var Item in Model.lstNote)
+                                                        {
+                                                            if (Item.NoteId != null && Item.NoteId != "")
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td><h4>@i</h4></td>
+                                                                    <td>@Item.Note</td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="btn bg-orange btn-sm" onclick="DeleteNote('@Item.NoteId')">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
                             <div class="col-md-12">
                                 <h4 class="text-center">Note</h4>
                                 <div class="table-responsive">
@@ -604,7 +639,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                        <input class="btn bg-orange btn-lg pull-left py-2" type="submit" value="Save" id="btnfinalsubmit" name="Save" />
+                    <input class="btn bg-orange btn-lg pull-left py-2" type="submit" value="Save" id="btnfinalsubmit" name="Save" />
                 </div>
             </div>
         </div>
@@ -621,586 +656,563 @@
         var Fk_DietChartId = $("#Fk_DietChartId").val();
         var NewUser = $("#NewUser").val();
         //alert(NewUser);
-        if (Fk_DietChartId != 0 && NewUser !=2) {
+        if (Fk_DietChartId != 0 && NewUser != 2) {
             $("#btnfinalsubmit").val("Update");
         }
-        else
-        {
+        else {
             $("#btnfinalsubmit").val("Save");
         }
 
-            $('#addOnWakingUp').click(function () {
-                debugger;
-                var isAllValid = true;
-                if (!($('#OnWakingUp').val().trim() != '' && ($('#OnWakingUp').val().trim()))) {
-                    $("#OnWakingUp").addClass('errortext');
-                    $('#OnWakingUp').focus();
-                    isAllValid = false;
-                }
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#walkinrow').clone().removeAttr('id');
-                    $('.OnWakingUp', $newRow).removeClass('errortext').prop('disabled', true).val($('#OnWakingUp').val());
-                    //Replace add button with remove button
-                    $('#addOnWakingUp', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#OnWakingUp,#addOnWakingUp', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#wakinguptableDetails').append($newRow);
-                    //clear select data
-                    $('#OnWakingUp').val('');
-                    $('#wakinguptableDetailsError').empty();
-                }
+        $('#addOnWakingUp').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#OnWakingUp').val().trim() != '' && ($('#OnWakingUp').val().trim()))) {
+                $("#OnWakingUp").addClass('errortext');
+                $('#OnWakingUp').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#walkinrow').clone().removeAttr('id');
+                $('.OnWakingUp', $newRow).removeClass('errortext').prop('disabled', true).val($('#OnWakingUp').val());
+                //Replace add button with remove button
+                $('#addOnWakingUp', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#OnWakingUp,#addOnWakingUp', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#wakinguptableDetails').append($newRow);
+                //clear select data
+                $('#OnWakingUp').val('');
+                $('#wakinguptableDetailsError').empty();
+            }
 
-            })
-            //remove button click event
-            $('#wakinguptableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        
+        })
+        //remove button click event
+        $('#wakinguptableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+
         //////breakfast statrt
 
-            $('#addBreakfast').click(function () {
-                debugger;
-                var isAllValid = true;
-                if (!($('#Breakfast').val().trim() != '' && ($('#Breakfast').val().trim()))) {
-                    $("#Breakfast").addClass('errortext');
-                    $('#Breakfast').focus();
-                    isAllValid = false;
-                }
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#breakfastrow').clone().removeAttr('id');
-                    $('.Breakfast', $newRow).removeClass('errortext').prop('disabled', true).val($('#Breakfast').val());
-                    //Replace add button with remove button
-                    $('#addBreakfast', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#Breakfast,#addBreakfast', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#BreakfasttableDetails').append($newRow);
-                    //clear select data
-                    $('#Breakfast').val('');
-                    $('#BreakfasttableDetailsError').empty();
-                }
+        $('#addBreakfast').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#Breakfast').val().trim() != '' && ($('#Breakfast').val().trim()))) {
+                $("#Breakfast").addClass('errortext');
+                $('#Breakfast').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#breakfastrow').clone().removeAttr('id');
+                $('.Breakfast', $newRow).removeClass('errortext').prop('disabled', true).val($('#Breakfast').val());
+                //Replace add button with remove button
+                $('#addBreakfast', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#Breakfast,#addBreakfast', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#BreakfasttableDetails').append($newRow);
+                //clear select data
+                $('#Breakfast').val('');
+                $('#BreakfasttableDetailsError').empty();
+            }
 
-            })
-            //remove button click event
-            $('#BreakfasttableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        
+        })
+        //remove button click event
+        $('#BreakfasttableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+
         ////////////MorningSnack
 
-            $('#addMorningSnack').click(function () {
-                debugger;
-                var isAllValid = true;
-                if (!($('#MorningSnack').val().trim() != '' && ($('#MorningSnack').val().trim()))) {
-                    $("#MorningSnack").addClass('errortext');
-                    $('#MorningSnack').focus();
-                    isAllValid = false;
-                }
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#MorningSnackrow').clone().removeAttr('id');
-                    $('.MorningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#MorningSnack').val());
-                    //Replace add button with remove button
-                    $('#addMorningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#MorningSnack,#addMorningSnack', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#MorningSnacktableDetails').append($newRow);
-                    //clear select data
-                    $('#MorningSnack').val('');
-                    $('#MorningSnacktableDetailsError').empty();
-                }
+        $('#addMorningSnack').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#MorningSnack').val().trim() != '' && ($('#MorningSnack').val().trim()))) {
+                $("#MorningSnack").addClass('errortext');
+                $('#MorningSnack').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#MorningSnackrow').clone().removeAttr('id');
+                $('.MorningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#MorningSnack').val());
+                //Replace add button with remove button
+                $('#addMorningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#MorningSnack,#addMorningSnack', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#MorningSnacktableDetails').append($newRow);
+                //clear select data
+                $('#MorningSnack').val('');
+                $('#MorningSnacktableDetailsError').empty();
+            }
 
-            })
-            //remove button click event
-            $('#MorningSnacktableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        
-     
+        })
+        //remove button click event
+        $('#MorningSnacktableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+
+
         ////////////Lunch
 
-            $('#addLunch').click(function () {
-                debugger;
-                var isAllValid = true;
-                if (!($('#Lunch').val().trim() != '' && ($('#Lunch').val().trim()))) {
-                    $("#Lunch").addClass('errortext');
-                    $('#Lunch').focus();
-                    isAllValid = false;
-                }
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#Lunchrow').clone().removeAttr('id');
-                    $('.Lunch', $newRow).removeClass('errortext').prop('disabled', true).val($('#Lunch').val());
-                    //Replace add button with remove button
-                    $('#addLunch', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#Lunch,#addLunch', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#LunchtableDetails').append($newRow);
-                    //clear select data
-                    $('#Lunch').val('');
-                    $('#LunchtableDetailsError').empty();
-                }
+        $('#addLunch').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#Lunch').val().trim() != '' && ($('#Lunch').val().trim()))) {
+                $("#Lunch").addClass('errortext');
+                $('#Lunch').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#Lunchrow').clone().removeAttr('id');
+                $('.Lunch', $newRow).removeClass('errortext').prop('disabled', true).val($('#Lunch').val());
+                //Replace add button with remove button
+                $('#addLunch', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#Lunch,#addLunch', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#LunchtableDetails').append($newRow);
+                //clear select data
+                $('#Lunch').val('');
+                $('#LunchtableDetailsError').empty();
+            }
 
-            })
-            //remove button click event
-            $('#LunchtableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-        
+        })
+        //remove button click event
+        $('#LunchtableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+
         ////////////Evening Snack
 
-            $('#addEveningSnack').click(function () {
-                debugger;
-                var isAllValid = true;
-                if (!($('#EveningSnack').val().trim() != '' && ($('#EveningSnack').val().trim()))) {
-                    $("#EveningSnack").addClass('errortext');
-                    $('#EveningSnack').focus();
-                    isAllValid = false;
-                }
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#EveningSnackrow').clone().removeAttr('id');
-                    $('.EveningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#EveningSnack').val());
-                    //Replace add button with remove button
-                    $('#addEveningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#EveningSnack,#addEveningSnack', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#EveningSnacktableDetails').append($newRow);
-                    //clear select data
-                    $('#EveningSnack').val('');
-                    $('#EveningSnacktableDetailsError').empty();
-                }
+        $('#addEveningSnack').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#EveningSnack').val().trim() != '' && ($('#EveningSnack').val().trim()))) {
+                $("#EveningSnack").addClass('errortext');
+                $('#EveningSnack').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#EveningSnackrow').clone().removeAttr('id');
+                $('.EveningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#EveningSnack').val());
+                //Replace add button with remove button
+                $('#addEveningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#EveningSnack,#addEveningSnack', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#EveningSnacktableDetails').append($newRow);
+                //clear select data
+                $('#EveningSnack').val('');
+                $('#EveningSnacktableDetailsError').empty();
+            }
 
-            })
-            //remove button click event
-            $('#EveningSnacktableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-       
+        })
+        //remove button click event
+        $('#EveningSnacktableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+
         ////////////Dinner
-        
-            $('#addDinner').click(function () {
-                debugger;
-                var isAllValid = true;
-                if (!($('#Dinner').val().trim() != '' && ($('#Dinner').val().trim()))) {
-                    $("#Dinner").addClass('errortext');
-                    $('#Dinner').focus();
-                    isAllValid = false;
-                }
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#Dinnerrow').clone().removeAttr('id');
-                    $('.Dinner', $newRow).removeClass('errortext').prop('disabled', true).val($('#Dinner').val());
-                    //Replace add button with remove button
-                    $('#addDinner', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#Dinner,#addDinner', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#DinnertableDetails').append($newRow);
-                    //clear select data
-                    $('#Dinner').val('');
-                    $('#DinnertableDetailsError').empty();
-                }
 
-            })
-            //remove button click event
-            $('#DinnertableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
+        $('#addDinner').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#Dinner').val().trim() != '' && ($('#Dinner').val().trim()))) {
+                $("#Dinner").addClass('errortext');
+                $('#Dinner').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#Dinnerrow').clone().removeAttr('id');
+                $('.Dinner', $newRow).removeClass('errortext').prop('disabled', true).val($('#Dinner').val());
+                //Replace add button with remove button
+                $('#addDinner', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#Dinner,#addDinner', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#DinnertableDetails').append($newRow);
+                //clear select data
+                $('#Dinner').val('');
+                $('#DinnertableDetailsError').empty();
+            }
+
+        })
+        //remove button click event
+        $('#DinnertableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
 
 
         ////////////Note
 
-            $('#addNote').click(function () {
-                debugger;
-                var isAllValid = true;
-                if (!($('#Note').val().trim() != '' && ($('#Note').val().trim()))) {
-                    $("#Note").addClass('errortext');
-                    $('#Note').focus();
-                    isAllValid = false;
-                }
-                debugger
-                if (isAllValid) {
-                    var $newRow = $('#Noterow').clone().removeAttr('id');
-                    $('.Note', $newRow).removeClass('errortext').prop('disabled', true).val($('#Note').val());
-                    //Replace add button with remove button
-                    $('#addNote', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
-                    //remove id attribute from new clone row
-                    $('#Note,#addNote', $newRow).removeAttr('id');
-                    $('span.error', $newRow).remove();
-                    //append clone row
-                    $('#NotetableDetails').append($newRow);
-                    //clear select data
-                    $('#Note').val('');
-                    $('#NotetableDetailsError').empty();
-                }
+        $('#addNote').click(function () {
+            debugger;
+            var isAllValid = true;
+            if (!($('#Note').val().trim() != '' && ($('#Note').val().trim()))) {
+                $("#Note").addClass('errortext');
+                $('#Note').focus();
+                isAllValid = false;
+            }
+            debugger
+            if (isAllValid) {
+                var $newRow = $('#Noterow').clone().removeAttr('id');
+                $('.Note', $newRow).removeClass('errortext').prop('disabled', true).val($('#Note').val());
+                //Replace add button with remove button
+                $('#addNote', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
+                //remove id attribute from new clone row
+                $('#Note,#addNote', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#NotetableDetails').append($newRow);
+                //clear select data
+                $('#Note').val('');
+                $('#NotetableDetailsError').empty();
+            }
 
-            })
+        })
         //remove button click event
-            $('#NotetableDetails').on('click', '.remove', function () {
-                $(this).parents('tr').remove();
-            });
-       
+        $('#NotetableDetails').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+
     })
 
 
 
-        $('#btnfinalsubmit').click(function () {
-            var isAllValid = true;
-            var Fk_DietChartId = $("#Fk_DietChartId").val();
+    $('#btnfinalsubmit').click(function () {
+        var isAllValid = true;
+        var Fk_DietChartId = $("#Fk_DietChartId").val();
 
-            if ($('#Name').val() == '') {
-                $("#Name").addClass('errortext');
-                $('#Name').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            else if ($('#Age').val() == '') {
-                $("#Age").addClass('errortext');
-                $('#Age').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            else if ($('#Weight').val() == '') {
-                $("#Weight").addClass('errortext');
-                $('#Weight').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            else if ($('#Height').val() == '') {
-                $("#Height").addClass('errortext');
-                $('#Height').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            else if ($('#Date').val() == '') {
-                $("#Date").addClass('errortext');
-                $('#Date').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            else if ($('#DietPreference').val() == '0') {
-                $("#DietPreference").addClass('errortext');
-                $('#DietPreference').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            else if ($('#BMI').val() == '') {
-                $("#BMI").addClass('errortext');
-                $('#BMI').focus();
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
+        if ($('#Name').val() == '') {
+            $("#Name").addClass('errortext');
+            $('#Name').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Age').val() == '') {
+            $("#Age").addClass('errortext');
+            $('#Age').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Weight').val() == '') {
+            $("#Weight").addClass('errortext');
+            $('#Weight').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Height').val() == '') {
+            $("#Height").addClass('errortext');
+            $('#Height').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Date').val() == '') {
+            $("#Date").addClass('errortext');
+            $('#Date').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#DietPreference').val() == '0') {
+            $("#DietPreference").addClass('errortext');
+            $('#DietPreference').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#BMI').val() == '') {
+            $("#BMI").addClass('errortext');
+            $('#BMI').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
 
 
 
-            $('#wakinguptableDetailsError').text('');
-            var wakinguplist = [];
-            var wakinguperrorItemCount = 0;
-            $('#wakinguptableDetails tr').each(function (index, ele) {
-                if (
-                    $('.OnWakingUp', this).val() == "") {
-                    wakinguperrorItemCount++;
-                    $(this).addClass('error');
-                } else {
-                    var wakinguporderItem = {
-                        OnWakingUp: $('.OnWakingUp', this).val()
+        $('#wakinguptableDetailsError').text('');
+        var wakinguplist = [];
+        var wakinguperrorItemCount = 0;
+        $('#wakinguptableDetails tr').each(function (index, ele) {
+            if (
+                $('.OnWakingUp', this).val() == "") {
+                wakinguperrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var wakinguporderItem = {
+                    OnWakingUp: $('.OnWakingUp', this).val()
+                }
+                wakinguplist.push(wakinguporderItem);
+            }
+        })
+        console.log(wakinguplist)
+        if (wakinguperrorItemCount > 0) {
+            $('#wakinguptableDetailsError').text(wakinguperrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (wakinguplist.length == 0) {
+            $('#wakinguptableDetailsError').text('At least 1 row data required in on waking up chart.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+
+
+        //////////Breakfast
+
+        $('#BreakfasttableDetailsError').text('');
+        var Breakfastlist = [];
+        var BreakfasterrorItemCount = 0;
+        $('#BreakfasttableDetails tr').each(function (index, ele) {
+            if ($('.Breakfast', this).val() == "") {
+                BreakfasterrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var BreakfastorderItem = {
+                    Breakfast: $('.Breakfast', this).val()
+                }
+                Breakfastlist.push(BreakfastorderItem);
+            }
+        })
+        console.log(Breakfastlist)
+        if (BreakfasterrorItemCount > 0) {
+            $('#BreakfasttableDetailsError').text(BreakfasterrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (Breakfastlist.length == 0) {
+            $('#BreakfasttableDetailsError').text('At least 1 row data required in Break fast.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+
+
+        ////////////////MorningSnack
+
+
+
+        $('#MorningSnacktableDetailsError').text('');
+        var MorningSnacklist = [];
+        var MorningSnackerrorItemCount = 0;
+        $('#MorningSnacktableDetails tr').each(function (index, ele) {
+            if (
+                $('.MorningSnack', this).val() == "") {
+                MorningSnackerrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var MorningSnackorderItem = {
+                    MorningSnack: $('.MorningSnack', this).val()
+                }
+                MorningSnacklist.push(MorningSnackorderItem);
+            }
+        })
+        console.log(MorningSnacklist)
+        if (MorningSnackerrorItemCount > 0) {
+            $('#MorningSnacktableDetailsError').text(MorningSnackerrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (MorningSnacklist.length == 0) {
+            $('#MorningSnacktableDetailsError').text('At least 1 row data required in Morning Snack.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        ///////////////////Lunch
+        $('#LunchtableDetailsError').text('');
+        var Lunchlist = [];
+        var LuncherrorItemCount = 0;
+        $('#LunchtableDetails tr').each(function (index, ele) {
+            if (
+                $('.Lunch', this).val() == "") {
+                LuncherrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var LunchorderItem = {
+                    Lunch: $('.Lunch', this).val()
+                }
+                Lunchlist.push(LunchorderItem);
+            }
+        })
+        console.log(Lunchlist)
+        if (LuncherrorItemCount > 0) {
+            $('#LunchtableDetailsError').text(LuncherrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (Lunchlist.length == 0) {
+            $('#LunchtableDetailsError').text('At least 1 row data required in Lunch.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+        ///////////////////EveningSnack
+        $('#EveningSnacktableDetailsError').text('');
+        var EveningSnacklist = [];
+        var EveningSnackerrorItemCount = 0;
+        $('#EveningSnacktableDetails tr').each(function (index, ele) {
+            if (
+                $('.EveningSnack', this).val() == "") {
+                EveningSnackerrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var EveningSnackorderItem = {
+                    EveningSnack: $('.EveningSnack', this).val()
+                }
+                EveningSnacklist.push(EveningSnackorderItem);
+            }
+        })
+        console.log(EveningSnacklist)
+        if (EveningSnackerrorItemCount > 0) {
+            $('#EveningSnacktableDetailsError').text(EveningSnackerrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (EveningSnacklist.length == 0) {
+            $('#EveningSnacktableDetailsError').text('At least 1 row data required in Evening Snack.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        ///////////////////Dinner
+
+        $('#DinnertableDetailsError').text('');
+        var Dinnerlist = [];
+        var DinnererrorItemCount = 0;
+        $('#DinnertableDetails tr').each(function (index, ele) {
+            if (
+                $('.Dinner', this).val() == "") {
+                DinnererrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var DinnerorderItem = {
+                    Dinner: $('.Dinner', this).val()
+                }
+                Dinnerlist.push(DinnerorderItem);
+            }
+        })
+
+        console.log(Dinnerlist)
+        if (DinnererrorItemCount > 0) {
+            $('#DinnertableDetailsError').text(DinnererrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+
+        if (Dinnerlist.length == 0) {
+            $('#DinnertableDetailsError').text('At least 1 row data required in Dinner.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        ///////////////////Note
+        $('#NotetableDetailsError').text('');
+        var Notelist = [];
+        var NoteerrorItemCount = 0;
+        $('#NotetableDetails tr').each(function (index, ele) {
+            if (
+                $('.Note', this).val() == "") {
+                NoteerrorItemCount++;
+                $(this).addClass('error');
+            } else {
+                var NoteorderItem = {
+                    Note: $('.Note', this).val()
+                }
+                Notelist.push(NoteorderItem);
+            }
+        })
+        console.log(Notelist)
+        if (NoteerrorItemCount > 0) {
+            $('#NotetableDetailsError').text(NoteerrorItemCount + " invalid entry in order item list.");
+            isAllValid = false;
+        }
+        if (Notelist.length == 0) {
+            $('#NotetableDetailsError').text('At least 1 row data required in Note.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        if (isAllValid) {
+            debugger;
+            var wakingupdata = {
+                wakingupAddData: JSON.stringify(wakinguplist),
+            }
+            var Breakfastdata = {
+                BreakfastAddData: JSON.stringify(Breakfastlist),
+            }
+            var MorningSnackdata = {
+                MorningSnackAddData: JSON.stringify(MorningSnacklist),
+            }
+            var Lunchdata = {
+                LunchAddData: JSON.stringify(Lunchlist),
+            }
+            var EveningSnackdata = {
+                EveningSnackAddData: JSON.stringify(EveningSnacklist),
+            }
+            var Dinnerdata = {
+                DinnerAddData: JSON.stringify(Dinnerlist),
+            }
+            var Notedata = {
+                NoteAddData: JSON.stringify(Notelist),
+            }
+            debugger
+            var formData = new FormData();
+            formData.append("Fk_DietChartId", $('#Fk_DietChartId').val());
+            formData.append("Name", $('#Name').val());
+            formData.append("Name", $('#Name').val());
+            formData.append("Age", $('#Age').val());
+            formData.append("Weight", $('#Weight').val());
+            formData.append("Height", $('#Height').val());
+            formData.append("Date", $('#Date').val());
+            formData.append("DietPreference", $('#DietPreference').val());
+            formData.append("BMI", $('#BMI').val());
+            formData.append("wakingupdataValue", JSON.stringify(wakingupdata));
+            formData.append("BreakfastdataValue", JSON.stringify(Breakfastdata));
+            formData.append("MorningSnackdataValue", JSON.stringify(MorningSnackdata));
+            formData.append("LunchdataValue", JSON.stringify(Lunchdata));
+            formData.append("EveningSnackdataValue", JSON.stringify(EveningSnackdata));
+            formData.append("DinnerdataValue", JSON.stringify(Dinnerdata));
+            formData.append("NotedataValue", JSON.stringify(Notedata));
+            $.ajax({
+                type: 'POST',
+                url: 'SaveDietChart',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    //alert(result);
+                    if (response.status) {
+                        // here we will clear the form
+                        list = [];
                     }
-                    wakinguplist.push(wakinguporderItem);
-                }
-            })
-            console.log(wakinguplist)
-            if (wakinguperrorItemCount > 0) {
-                $('#wakinguptableDetailsError').text(wakinguperrorItemCount + " invalid entry in order item list.");
-                isAllValid = false;
-            }
-
-            if (wakinguplist.length == 0) {
-                $('#wakinguptableDetailsError').text('At least 1 row data required in on waking up chart.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-
-
-
-            //////////Breakfast
-
-            $('#BreakfasttableDetailsError').text('');
-            var Breakfastlist = [];
-            var BreakfasterrorItemCount = 0;
-            $('#BreakfasttableDetails tr').each(function (index, ele) {
-                if ($('.Breakfast', this).val() == "") {
-                    BreakfasterrorItemCount++;
-                    $(this).addClass('error');
-                } else {
-                    var BreakfastorderItem = {
-                        Breakfast: $('.Breakfast', this).val()
+                    else {
+                        //alert('Error');
                     }
-                    Breakfastlist.push(BreakfastorderItem);
+                    //$('#submit').text('Save');
+                },
+                error: function (error) {
+                    console.log(error);
+                    //$('#submit').text('Save');
                 }
-            })
-            console.log(Breakfastlist)
-            if (BreakfasterrorItemCount > 0) {
-                $('#BreakfasttableDetailsError').text(BreakfasterrorItemCount + " invalid entry in order item list.");
-                isAllValid = false;
-            }
-
-            if (Breakfastlist.length == 0) {
-                $('#BreakfasttableDetailsError').text('At least 1 row data required in Break fast.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-
-
-
-            ////////////////MorningSnack
-
-
-
-            $('#MorningSnacktableDetailsError').text('');
-            var MorningSnacklist = [];
-            var MorningSnackerrorItemCount = 0;
-            $('#MorningSnacktableDetails tr').each(function (index, ele) {
-                if (
-                    $('.MorningSnack', this).val() == "") {
-                    MorningSnackerrorItemCount++;
-                    $(this).addClass('error');
-                } else {
-                    var MorningSnackorderItem = {
-                        MorningSnack: $('.MorningSnack', this).val()
-                    }
-                    MorningSnacklist.push(MorningSnackorderItem);
-                }
-            })
-            console.log(MorningSnacklist)
-            if (MorningSnackerrorItemCount > 0) {
-                $('#MorningSnacktableDetailsError').text(MorningSnackerrorItemCount + " invalid entry in order item list.");
-                isAllValid = false;
-            }
-
-            if (MorningSnacklist.length == 0) {
-                $('#MorningSnacktableDetailsError').text('At least 1 row data required in Morning Snack.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            ///////////////////Lunch
-            $('#LunchtableDetailsError').text('');
-            var Lunchlist = [];
-            var LuncherrorItemCount = 0;
-            $('#LunchtableDetails tr').each(function (index, ele) {
-                if (
-                    $('.Lunch', this).val() == "") {
-                    LuncherrorItemCount++;
-                    $(this).addClass('error');
-                } else {
-                    var LunchorderItem = {
-                        Lunch: $('.Lunch', this).val()
-                    }
-                    Lunchlist.push(LunchorderItem);
-                }
-            })
-            console.log(Lunchlist)
-            if (LuncherrorItemCount > 0) {
-                $('#LunchtableDetailsError').text(LuncherrorItemCount + " invalid entry in order item list.");
-                isAllValid = false;
-            }
-
-            if (Lunchlist.length == 0) {
-                $('#LunchtableDetailsError').text('At least 1 row data required in Lunch.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-
-            ///////////////////EveningSnack
-            $('#EveningSnacktableDetailsError').text('');
-            var EveningSnacklist = [];
-            var EveningSnackerrorItemCount = 0;
-            $('#EveningSnacktableDetails tr').each(function (index, ele) {
-                if (
-                    $('.EveningSnack', this).val() == "") {
-                    EveningSnackerrorItemCount++;
-                    $(this).addClass('error');
-                } else {
-                    var EveningSnackorderItem = {
-                        EveningSnack: $('.EveningSnack', this).val()
-                    }
-                    EveningSnacklist.push(EveningSnackorderItem);
-                }
-            })
-            console.log(EveningSnacklist)
-            if (EveningSnackerrorItemCount > 0) {
-                $('#EveningSnacktableDetailsError').text(EveningSnackerrorItemCount + " invalid entry in order item list.");
-                isAllValid = false;
-            }
-
-            if (EveningSnacklist.length == 0) {
-                $('#EveningSnacktableDetailsError').text('At least 1 row data required in Evening Snack.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-            ///////////////////Dinner
-
-            $('#DinnertableDetailsError').text('');
-            var Dinnerlist = [];
-            var DinnererrorItemCount = 0;
-            $('#DinnertableDetails tr').each(function (index, ele) {
-                if (
-                    $('.Dinner', this).val() == "") {
-                    DinnererrorItemCount++;
-                    $(this).addClass('error');
-                } else {
-                    var DinnerorderItem = {
-                        Dinner: $('.Dinner', this).val()
-                    }
-                    Dinnerlist.push(DinnerorderItem);
-                }
-            })
-
-            console.log(Dinnerlist)
-            if (DinnererrorItemCount > 0) {
-                $('#DinnertableDetailsError').text(DinnererrorItemCount + " invalid entry in order item list.");
-                isAllValid = false;
-            }
-
-            if (Dinnerlist.length == 0) {
-                $('#DinnertableDetailsError').text('At least 1 row data required in Dinner.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-
-
-
-
-
-            ///////////////////Note
-
-            $('#NotetableDetailsError').text('');
-            var Notelist = [];
-            var NoteerrorItemCount = 0;
-            $('#NotetableDetails tr').each(function (index, ele) {
-                if (
-                    $('.Note', this).val() == "") {
-                    NoteerrorItemCount++;
-                    $(this).addClass('error');
-                } else {
-                    var NoteorderItem = {
-                        Note: $('.Note', this).val()
-                    }
-                    Notelist.push(NoteorderItem);
-                }
-            })
-
-            console.log(Notelist)
-            if (NoteerrorItemCount > 0) {
-                $('#NotetableDetailsError').text(NoteerrorItemCount + " invalid entry in order item list.");
-                isAllValid = false;
-            }
-
-            if (Notelist.length == 0) {
-                $('#NotetableDetailsError').text('At least 1 row data required in Note.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
-            }
-
-
-
-
-
-            if (isAllValid) {
-                debugger;
-                var wakingupdata = {
-                    wakingupAddData: JSON.stringify(wakinguplist),
-                }
-
-                var Breakfastdata = {
-                    BreakfastAddData: JSON.stringify(Breakfastlist),
-                }
-
-                var MorningSnackdata = {
-                    MorningSnackAddData: JSON.stringify(MorningSnacklist),
-                }
-                var Lunchdata = {
-                    LunchAddData: JSON.stringify(Lunchlist),
-                }
-                var EveningSnackdata = {
-                    EveningSnackAddData: JSON.stringify(EveningSnacklist),
-                }
-
-                var Dinnerdata = {
-                    DinnerAddData: JSON.stringify(Dinnerlist),
-                }
-
-                var Notedata = {
-                    NoteAddData: JSON.stringify(Notelist),
-                }
-
-
-
-                debugger
-                var formData = new FormData();
-                formData.append("Fk_DietChartId", $('#Fk_DietChartId').val());
-                formData.append("Name", $('#Name').val());
-                formData.append("Name", $('#Name').val());
-                formData.append("Age", $('#Age').val());
-                formData.append("Weight", $('#Weight').val());
-                formData.append("Height", $('#Height').val());
-                formData.append("Date", $('#Date').val());
-                formData.append("DietPreference", $('#DietPreference').val());
-                formData.append("BMI", $('#BMI').val());
-                formData.append("wakingupdataValue", JSON.stringify(wakingupdata));
-                formData.append("BreakfastdataValue", JSON.stringify(Breakfastdata));
-                formData.append("MorningSnackdataValue", JSON.stringify(MorningSnackdata));
-                formData.append("LunchdataValue", JSON.stringify(Lunchdata));
-                formData.append("EveningSnackdataValue", JSON.stringify(EveningSnackdata));
-                formData.append("DinnerdataValue", JSON.stringify(Dinnerdata));
-                formData.append("NotedataValue", JSON.stringify(Notedata));
-                $.ajax({
-                    type: 'POST',
-                    url: 'SaveDietChart',
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        //alert(result);
-                        if (response.status) {
-                            // here we will clear the form
-                            list = [];
-                        }
-                        else {
-                            //alert('Error');
-                        }
-                        //$('#submit').text('Save');
-                    },
-                    error: function (error) {
-                        console.log(error);
-                        //$('#submit').text('Save');
-                    }
-                });
-                //$('#submit').text('Save');
-            }
-        });
-
-    
+            });
+            //$('#submit').text('Save');
+        }
+    });
 
     $('#Date').datepicker({
         dateFormat: 'dd/mm/yy',
@@ -1238,10 +1250,10 @@
                 datatype: 'json',
                 data: { 'OnWakingUpId': OnWakingUpId },
                 success: function (data) {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 },
                 error: function () {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 }
             });
         }
@@ -1257,10 +1269,10 @@
                 datatype: 'json',
                 data: { 'BreakfastID': BreakfastID },
                 success: function (data) {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 },
                 error: function () {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 }
             });
         }
@@ -1276,10 +1288,10 @@
                 datatype: 'json',
                 data: { 'MorningSnackID': MorningSnackID },
                 success: function (data) {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 },
                 error: function () {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 }
             });
         }
@@ -1295,15 +1307,14 @@
                 datatype: 'json',
                 data: { 'LunchID': LunchID },
                 success: function (data) {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 },
                 error: function () {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 }
             });
         }
     }
-
     function DeleteEveningSnack(EveningSnackID) {
         debugger;
         var r = confirm('Are you sure you want to delete this Evening Snack record ?');
@@ -1314,15 +1325,14 @@
                 datatype: 'json',
                 data: { 'EveningSnackID': EveningSnackID },
                 success: function (data) {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 },
                 error: function () {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 }
             });
         }
     }
-
     function DeleteDinner(DinnerID) {
         debugger;
         var r = confirm('Are you sure you want to delete this Dinner record ?');
@@ -1333,15 +1343,36 @@
                 datatype: 'json',
                 data: { 'DinnerID': DinnerID },
                 success: function (data) {
-                    window.location.href = '/Admin/DietChart';
+                    //window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 },
                 error: function () {
-                    window.location.href = '/Admin/DietChart';
+                    window.location.reload();
                 }
             });
         }
     }
-
+    function DeleteNote(NoteId) {
+        debugger;
+        var r = confirm('Are you sure you want to delete this note record ?');
+        if (r == true) {
+            $.ajax({
+                type: 'post',
+                url: '/Admin/DeleteNote',
+                datatype: 'json',
+                data: { 'NoteId': NoteId },
+                success: function (data) {
+                    window.location.reload();
+                },
+                error: function () {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+    if ($("#Diet").val() != 0) {
+        $("#DietPreference").val($("#Diet").val()).attr("selected", "selected");
+    }
 </script>
 <style>
     .errortext {
