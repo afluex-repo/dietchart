@@ -926,16 +926,16 @@
                 $('#wakinguptableDetailsError').text(wakinguperrorItemCount + " invalid entry in order item list.");
                 isAllValid = false;
             }
-
-            if (wakinguplist.length == 0) {
-                $('#wakinguptableDetailsError').text('At least 1 row data required in on waking up chart.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
+            if ($('#Fk_DietChartId').val() == "" || $('#Fk_DietChartId').val() == null)
+            {
+                if (wakinguplist.length == 0) {
+                    $('#wakinguptableDetailsError').text('At least 1 row data required in on waking up chart.');
+                    isAllValid = false;
+                    $("#divload").css({ 'display': 'none' });
+                    return false;
+                }
             }
-
-
-
+           
             //////////Breakfast
 
             $('#BreakfasttableDetailsError').text('');
@@ -957,14 +957,14 @@
                 $('#BreakfasttableDetailsError').text(BreakfasterrorItemCount + " invalid entry in order item list.");
                 isAllValid = false;
             }
-
-            if (Breakfastlist.length == 0) {
-                $('#BreakfasttableDetailsError').text('At least 1 row data required in Break fast.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
+            if ($('#Fk_DietChartId').val() == "" || $('#Fk_DietChartId').val() == null) {
+                if (Breakfastlist.length == 0) {
+                    $('#BreakfasttableDetailsError').text('At least 1 row data required in Break fast.');
+                    isAllValid = false;
+                    $("#divload").css({ 'display': 'none' });
+                    return false;
+                }
             }
-
 
 
             ////////////////MorningSnack
@@ -991,12 +991,13 @@
                 $('#MorningSnacktableDetailsError').text(MorningSnackerrorItemCount + " invalid entry in order item list.");
                 isAllValid = false;
             }
-
-            if (MorningSnacklist.length == 0) {
-                $('#MorningSnacktableDetailsError').text('At least 1 row data required in Morning Snack.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
+            if ($('#Fk_DietChartId').val() == "" || $('#Fk_DietChartId').val() == null) {
+                if (MorningSnacklist.length == 0) {
+                    $('#MorningSnacktableDetailsError').text('At least 1 row data required in Morning Snack.');
+                    isAllValid = false;
+                    $("#divload").css({ 'display': 'none' });
+                    return false;
+                }
             }
             ///////////////////Lunch
             $('#LunchtableDetailsError').text('');
@@ -1019,12 +1020,13 @@
                 $('#LunchtableDetailsError').text(LuncherrorItemCount + " invalid entry in order item list.");
                 isAllValid = false;
             }
-
-            if (Lunchlist.length == 0) {
-                $('#LunchtableDetailsError').text('At least 1 row data required in Lunch.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
+            if ($('#Fk_DietChartId').val() == "" || $('#Fk_DietChartId').val() == null) {
+                if (Lunchlist.length == 0) {
+                    $('#LunchtableDetailsError').text('At least 1 row data required in Lunch.');
+                    isAllValid = false;
+                    $("#divload").css({ 'display': 'none' });
+                    return false;
+                }
             }
 
             ///////////////////EveningSnack
@@ -1048,12 +1050,13 @@
                 $('#EveningSnacktableDetailsError').text(EveningSnackerrorItemCount + " invalid entry in order item list.");
                 isAllValid = false;
             }
-
-            if (EveningSnacklist.length == 0) {
-                $('#EveningSnacktableDetailsError').text('At least 1 row data required in Evening Snack.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
+            if ($('#Fk_DietChartId').val() == "" || $('#Fk_DietChartId').val() == null) {
+                if (EveningSnacklist.length == 0) {
+                    $('#EveningSnacktableDetailsError').text('At least 1 row data required in Evening Snack.');
+                    isAllValid = false;
+                    $("#divload").css({ 'display': 'none' });
+                    return false;
+                }
             }
             ///////////////////Dinner
 
@@ -1078,18 +1081,15 @@
                 $('#DinnertableDetailsError').text(DinnererrorItemCount + " invalid entry in order item list.");
                 isAllValid = false;
             }
+            if ($('#Fk_DietChartId').val() == "" || $('#Fk_DietChartId').val() == null) {
+                if (Dinnerlist.length == 0) {
+                    $('#DinnertableDetailsError').text('At least 1 row data required in Dinner.');
+                    isAllValid = false;
+                    $("#divload").css({ 'display': 'none' });
+                    return false;
+                }
 
-            if (Dinnerlist.length == 0) {
-                $('#DinnertableDetailsError').text('At least 1 row data required in Dinner.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
             }
-
-
-
-
-
             ///////////////////Note
 
             $('#NotetableDetailsError').text('');
@@ -1113,18 +1113,14 @@
                 $('#NotetableDetailsError').text(NoteerrorItemCount + " invalid entry in order item list.");
                 isAllValid = false;
             }
-
-            if (Notelist.length == 0) {
-                $('#NotetableDetailsError').text('At least 1 row data required in Note.');
-                isAllValid = false;
-                $("#divload").css({ 'display': 'none' });
-                return false;
+            if ($('#Fk_DietChartId').val() == "" || $('#Fk_DietChartId').val() == null) {
+                if (Notelist.length == 0) {
+                    $('#NotetableDetailsError').text('At least 1 row data required in Note.');
+                    isAllValid = false;
+                    $("#divload").css({ 'display': 'none' });
+                    return false;
+                }
             }
-
-
-
-
-
             if (isAllValid) {
                 debugger;
                 var wakingupdata = {

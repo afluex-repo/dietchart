@@ -110,51 +110,112 @@ namespace DietChart.Controllers
             var jsswakingup = new JavaScriptSerializer();
             var jdvwakingup = jsswakingup.Deserialize<dynamic>(Request["wakingupdataValue"]);
             DataTable dtDietChartOnWakingUpDetails = new DataTable();
-            dtDietChartOnWakingUpDetails = JsonConvert.DeserializeObject<DataTable>(jdvwakingup["wakingupAddData"]);
-            userDetail.dtDietChartOnWakingUpDetails = dtDietChartOnWakingUpDetails;
-
             var datavaluebreakfast = Request["BreakfastdataValue"];
             var jssBreakfast = new JavaScriptSerializer();
             var jdvBreakfast = jssBreakfast.Deserialize<dynamic>(Request["BreakfastdataValue"]);
             DataTable dtDietChartBreakfastDetails = new DataTable();
-            dtDietChartBreakfastDetails = JsonConvert.DeserializeObject<DataTable>(jdvBreakfast["BreakfastAddData"]);
-            userDetail.dtDietChartBreakfastDetails = dtDietChartBreakfastDetails;
-
             var datavaluemorningsnack = Request["MorningSnackdataValue"];
             var jssMorningSnack = new JavaScriptSerializer();
             var jdvMorningSnack = jssMorningSnack.Deserialize<dynamic>(Request["MorningSnackdataValue"]);
             DataTable dtDietChartMorningSnackDetails = new DataTable();
-            dtDietChartMorningSnackDetails = JsonConvert.DeserializeObject<DataTable>(jdvMorningSnack["MorningSnackAddData"]);
-            userDetail.dtDietChartMorningSnackDetails = dtDietChartMorningSnackDetails;
-
             var datavalueLunch = Request["LunchdataValue"];
             var jssLunch = new JavaScriptSerializer();
             var jdvLunch = jssLunch.Deserialize<dynamic>(Request["LunchdataValue"]);
             DataTable dtDietChartLunchDetails = new DataTable();
-            dtDietChartLunchDetails = JsonConvert.DeserializeObject<DataTable>(jdvLunch["LunchAddData"]);
-            userDetail.dtDietChartLunchDetails = dtDietChartLunchDetails;
-
             var datavalueEveningSnack = Request["EveningSnackdataValue"];
             var jssEveningSnack = new JavaScriptSerializer();
             var jdvEveningSnack = jssEveningSnack.Deserialize<dynamic>(Request["EveningSnackdataValue"]);
             DataTable dtDietChartEveningSnackDetails = new DataTable();
-            dtDietChartEveningSnackDetails = JsonConvert.DeserializeObject<DataTable>(jdvEveningSnack["EveningSnackAddData"]);
-            userDetail.dtDietChartEveningSnackDetails = dtDietChartEveningSnackDetails;
-
             var datavalueDinner = Request["DinnerdataValue"];
             var jssDinner = new JavaScriptSerializer();
             var jdvDinner = jssDinner.Deserialize<dynamic>(Request["DinnerdataValue"]);
             DataTable dtDietChartDinnerDetails = new DataTable();
-            dtDietChartDinnerDetails = JsonConvert.DeserializeObject<DataTable>(jdvDinner["DinnerAddData"]);
-            userDetail.dtDietChartDinnerDetails = dtDietChartDinnerDetails;
-
             var datavalueNote = Request["NotedataValue"];
             var jssNote = new JavaScriptSerializer();
             var jdvNote = jssNote.Deserialize<dynamic>(Request["NotedataValue"]);
             DataTable dtDietChartNoteDetails = new DataTable();
-            dtDietChartNoteDetails = JsonConvert.DeserializeObject<DataTable>(jdvNote["NoteAddData"]);
-            userDetail.dtDietChartNoteDetails = dtDietChartNoteDetails;
+            if (userDetail.Fk_DietChartId == "" || userDetail.Fk_DietChartId == null)
+            {
+                dtDietChartOnWakingUpDetails = JsonConvert.DeserializeObject<DataTable>(jdvwakingup["wakingupAddData"]);
+                dtDietChartBreakfastDetails = JsonConvert.DeserializeObject<DataTable>(jdvBreakfast["BreakfastAddData"]);
+                dtDietChartMorningSnackDetails = JsonConvert.DeserializeObject<DataTable>(jdvMorningSnack["MorningSnackAddData"]);
+                dtDietChartLunchDetails = JsonConvert.DeserializeObject<DataTable>(jdvLunch["LunchAddData"]);
+                dtDietChartEveningSnackDetails = JsonConvert.DeserializeObject<DataTable>(jdvEveningSnack["EveningSnackAddData"]);
+                dtDietChartDinnerDetails = JsonConvert.DeserializeObject<DataTable>(jdvDinner["DinnerAddData"]);
+                dtDietChartNoteDetails = JsonConvert.DeserializeObject<DataTable>(jdvNote["NoteAddData"]);
+            }
+            else
+            {
+                if(datavaluewaking=="")
+                {
+                    dtDietChartOnWakingUpDetails.Columns.Add("OnWakingUp", typeof(string));
+                }
+                else
+                {
+                    dtDietChartOnWakingUpDetails = JsonConvert.DeserializeObject<DataTable>(jdvwakingup["wakingupAddData"]);
+                }
+                if (datavaluebreakfast=="")
+                {
+                    dtDietChartBreakfastDetails.Columns.Add("Breakfast", typeof(string));
+                }
+                else
+                {
+                    dtDietChartBreakfastDetails = JsonConvert.DeserializeObject<DataTable>(jdvBreakfast["BreakfastAddData"]);
+                  
+                }
+                if (datavaluemorningsnack=="")
+                {
+                    dtDietChartMorningSnackDetails.Columns.Add("MorningSnack", typeof(string));
+                }
+                else
+                {
+                    dtDietChartMorningSnackDetails = JsonConvert.DeserializeObject<DataTable>(jdvMorningSnack["MorningSnackAddData"]);
+                 
+                }
+                if (datavalueLunch=="")
+                {
+                    dtDietChartLunchDetails.Columns.Add("Lunch", typeof(string));
+                }
+               else
+                {
+                    dtDietChartLunchDetails = JsonConvert.DeserializeObject<DataTable>(jdvLunch["LunchAddData"]);
+                
+                }
+                if (datavalueEveningSnack=="")
+                {
+                    dtDietChartEveningSnackDetails.Columns.Add("EveningSnack", typeof(string));
+                }
+               else
+                {
+                    dtDietChartEveningSnackDetails = JsonConvert.DeserializeObject<DataTable>(jdvEveningSnack["EveningSnackAddData"]);
+                
+                }
+                if (datavalueDinner=="")
+                {
+                    dtDietChartDinnerDetails.Columns.Add("Dinner", typeof(string));
+                }
+              else
+                {
+                    dtDietChartDinnerDetails = JsonConvert.DeserializeObject<DataTable>(jdvDinner["DinnerAddData"]);
+                   
+                }
+                if (datavalueNote=="")
+                {
+                    dtDietChartNoteDetails.Columns.Add("Note", typeof(string));
+                }
+               else
+                {
+                    dtDietChartNoteDetails = JsonConvert.DeserializeObject<DataTable>(jdvNote["NoteAddData"]);
+                }
+            }
 
+            userDetail.dtDietChartOnWakingUpDetails = dtDietChartOnWakingUpDetails;
+            userDetail.dtDietChartBreakfastDetails = dtDietChartBreakfastDetails;
+            userDetail.dtDietChartMorningSnackDetails = dtDietChartMorningSnackDetails;
+            userDetail.dtDietChartLunchDetails = dtDietChartLunchDetails;
+            userDetail.dtDietChartEveningSnackDetails = dtDietChartEveningSnackDetails;
+            userDetail.dtDietChartDinnerDetails = dtDietChartDinnerDetails;
+            userDetail.dtDietChartNoteDetails = dtDietChartNoteDetails;
             userDetail.CreatedBy = Session["PK_AdminId"].ToString();
             userDetail.Date = string.IsNullOrEmpty(userDetail.Date) ? null : Common.ConvertToSystemDate(userDetail.Date, "dd/MM/yyyy");
             DataSet ds = new DataSet();
@@ -177,7 +238,7 @@ namespace DietChart.Controllers
             }
             return new JsonResult { Data = new { status = status } };
         }
-        
+
 
         //[HttpPost]
         //public JsonResult UpdateDietChart(Admin userDetail)
@@ -191,7 +252,7 @@ namespace DietChart.Controllers
         //    DataTable dtDietChartOnWakingUpDetails = new DataTable();
         //    dtDietChartOnWakingUpDetails = JsonConvert.DeserializeObject<DataTable>(jdvwakingup["wakingupAddData"]);
         //    userDetail.dtDietChartOnWakingUpDetails = dtDietChartOnWakingUpDetails;
-            
+
         //    var datavaluebreakfast = Request["BreakfastdataValue"];
         //    var jssBreakfast = new JavaScriptSerializer();
         //    var jdvBreakfast = jssBreakfast.Deserialize<dynamic>(Request["BreakfastdataValue"]);
@@ -249,7 +310,7 @@ namespace DietChart.Controllers
         //    }
         //    return new JsonResult { Data = new { status = status } };
         //}
-        
+
         public ActionResult DietChartList()
         {
             Admin model = new Admin();
@@ -519,9 +580,9 @@ namespace DietChart.Controllers
             {
                 TempData["Dinner"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
             }
-            return Json(model,JsonRequestBehavior.AllowGet);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
-        
+
 
 
     }
