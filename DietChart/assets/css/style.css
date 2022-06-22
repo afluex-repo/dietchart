@@ -21059,6 +21059,9 @@ div.tagsinput {
 {
     color:#000;
 }
-
+select.form-control
+{
+    border: 1px solid #2c2e33 !important;
+}
 
 /*# sourceMappingURL=maps/style.css.map */
