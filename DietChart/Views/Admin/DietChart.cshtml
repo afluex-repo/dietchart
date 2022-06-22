@@ -969,7 +969,7 @@
                     return false;
                 }
             }
-           
+
             //////////Breakfast
 
             $('#BreakfasttableDetailsError').text('');
@@ -1212,9 +1212,10 @@
                     processData: false,
                     success: function (response) {
                         //alert(result);
-                        if (response.status) {
+                        if (response.status==true) {
                             // here we will clear the form
                             list = [];
+                            window.location.href = '@Url.Action("DietChart", "Admin")';
                         }
                         else {
                             //alert('Error');
