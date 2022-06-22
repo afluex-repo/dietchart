@@ -22,6 +22,7 @@ namespace DietChart.Models
         public DataTable dtDietChartLunchDetails { get; set; }
         public DataTable dtDietChartEveningSnackDetails { get; set; }
         public DataTable dtDietChartDinnerDetails { get; set; }
+        public DataTable dtDietChartNoteDetails { get; set; }
         public DataTable dtDietChartDetails { get; set; }
         public List<Admin> lstdietchart { get; set; }
 
@@ -39,17 +40,19 @@ namespace DietChart.Models
         public List<Admin> lstlunch { get; set; }
         public List<Admin> lsteveningsnack { get; set; }
         public List<Admin> lstdinner { get; set; }
+        public List<Admin> lstNote { get; set; }
+
         public string Fk_DietChartId { get; set; }
         public string Encrypt { get; set; }
-
         public string OnWakingUpId { get; set; }
         public string BreakfastID { get; set; }
         public string MorningSnackID { get; set; }
         public string LunchID { get; set; }
         public string EveningSnackID { get; set; }
         public string DinnerID { get; set; }
-
-
+        public decimal Newuser { get; set; }
+        public string Note { get; set; }
+        public string NoteId { get; set; }
 
         public DataSet SaveDietChartDetails()
         {
@@ -67,18 +70,18 @@ namespace DietChart.Models
                                       new SqlParameter("@dtDietChartMorningSnackDetails",dtDietChartMorningSnackDetails),
                                       new SqlParameter("@dtDietChartLunchDetails",dtDietChartLunchDetails),
                                       new SqlParameter("@dtDietChartEveningSnackDetails",dtDietChartEveningSnackDetails),
-                                      new SqlParameter("@dtDietChartDinnerDetails",dtDietChartDinnerDetails)
+                                      new SqlParameter("@dtDietChartDinnerDetails",dtDietChartDinnerDetails),
+                                        new SqlParameter("@dtDietChartNoteDetails",dtDietChartNoteDetails),
+                                          new SqlParameter("@FK_DietChartMasterID",Fk_DietChartId)
 
                                   };
             DataSet ds = Connection.ExecuteQuery("SaveDietChart", para);
             return ds;
         }
-
-
-        public DataSet UpdateDietChart()
+        public DataSet UpdateDietChartDetails()
         {
             SqlParameter[] para = {
-                 new SqlParameter("@DietChartID",Fk_DietChartId),
+                                      new SqlParameter("@DietChartID",Fk_DietChartId),
                                       new SqlParameter("@Name",Name),
                                        new SqlParameter("@Age", Age),
                                        new SqlParameter("@Weight", Weight),
@@ -98,23 +101,12 @@ namespace DietChart.Models
             DataSet ds = Connection.ExecuteQuery("UpdateDietChart", para);
             return ds;
         }
-
-
-
-        
-
-
-
-
-
-
-
         public DataSet GetDietChartList()
         {
             DataSet ds = Connection.ExecuteQuery("GetDietChartList");
             return ds;
         }
-        
+
         public DataSet PrintDietChartDetails()
         {
             SqlParameter[] para = {
@@ -123,7 +115,6 @@ namespace DietChart.Models
             DataSet ds = Connection.ExecuteQuery("PrintDietChartDetails", para);
             return ds;
         }
-
         public DataSet DeleteOnWakingUp()
         {
             SqlParameter[] para = {
@@ -176,6 +167,24 @@ namespace DietChart.Models
                                       new SqlParameter("@AddedBy",CreatedBy)
                                   };
             DataSet ds = Connection.ExecuteQuery("DeleteDinner", para);
+            return ds;
+        }
+        public DataSet DeleteNote()
+        {
+            SqlParameter[] para = {
+                                      new SqlParameter("@NoteId",NoteId),
+                                      new SqlParameter("@AddedBy",CreatedBy)
+                                  };
+            DataSet ds = Connection.ExecuteQuery("DeleteNote", para);
+            return ds;
+        }
+        public DataSet DeleteDietChart()
+        {
+            SqlParameter[] para = {
+                                      new SqlParameter("@Pk_DietChartId",Fk_DietChartId),
+                                      new SqlParameter("@AddedBy",CreatedBy)
+                                  };
+            DataSet ds = Connection.ExecuteQuery("DeleteDietChart", para);
             return ds;
         }
     }
