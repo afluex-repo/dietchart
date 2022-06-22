@@ -7,35 +7,36 @@
 <style>
     .table, .jsgrid .jsgrid-table {
         margin-bottom: 0;
-        color: #ffffff;
+        color: #000;
     }
 
         .table th, .jsgrid .jsgrid-table th, .table td, .jsgrid .jsgrid-table td {
             padding: 0.9375rem;
             vertical-align: top;
-            border-top: 1px solid #fcfcfc;
+            /*border-top: 1px solid #fcfcfc;*/
         }
 
         .table thead th, .jsgrid .jsgrid-table thead th {
             vertical-align: bottom;
-            border-bottom: 2px solid #dfdfdf;
+            /*border-bottom: 2px solid #dfdfdf;*/
         }
 
         .table thead th {
             color: black;
         }
+      
 </style>
 
 <div class="content-wrapper">
     @using (Html.BeginForm("DietChartList", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
     {
         <div class="col-12 grid-margin stretch-card">
-            <div class="card bg-aqua">
+            <div class="card bg-white">
                 <div class="card-body">
                     <span class="text-danger">
                        @TempData["msg"]
                     </span>
-                    <h4 class="card-title">Diet Chart List</h4>
+                    <h4 class="card-title text-black">Diet Chart List</h4>
                     <div class="row mb-4">
                         <div class="table-responsive">
                             <table id="file_export" class="table table-striped">
