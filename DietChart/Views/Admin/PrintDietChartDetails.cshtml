@@ -81,23 +81,34 @@
                         <tr>
                             <td><b>Name :</b> @ViewBag.Name</td>
                             <td>
-                                <b> Age :</b> @ViewBag.Age Year Old.
+                                <b> Age :</b> @ViewBag.Age Year
                             </td>
                             <td>
-                                <b>Weight :</b> @ViewBag.Weight Kg.
+                                <b>Weight :</b> @ViewBag.Weight Kg
                             </td>
                             <td>
-                                <b>Height :</b> @ViewBag.Height Feet.
+                                <b>Height :</b> @ViewBag.Height Feet
+                            </td>
+                            <td>
+                                <b>Date :</b> @ViewBag.Date
                             </td>
                         </tr>
                         <tr>
-                            <td> <b>Date :</b> @ViewBag.Date</td>
+                            @*<td> <b>Date :</b> @ViewBag.Date</td>*@
                             <td>
                                 <b>Diet Preference :</b> @ViewBag.DietPreference
                             </td>
-                            <td colspan="2">
+                            <td>
 
                                 <b>BMI :</b>  @ViewBag.BMI
+                            </td>
+                            <td>
+
+                                <b>Calorie :</b>  @ViewBag.Calorie Kcal
+                            </td>
+                            <td colspan="2">
+
+                                <b>Protein :</b>  @ViewBag.Protein gm
                             </td>
                         </tr>
                     </table>
@@ -210,7 +221,7 @@
                                 {
                                     if (Item.NoteId != null && Item.NoteId != "")
                                     {
-                                    <span><b>@i</b></span>  <span>@Item.Note</span><br />
+                                        <span><b>@i</b></span>  <span>@Item.Note</span><br />
                                     }
                                 }
                             }
