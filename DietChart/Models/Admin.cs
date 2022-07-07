@@ -16,6 +16,8 @@ namespace DietChart.Models
         public string Date { get; set; }
         public string DietPreference { get; set; }
         public string BMI { get; set; }
+        public string Calorie { get; set; }
+        public string Protein { get; set; }
         public DataTable dtDietChartOnWakingUpDetails { get; set; }
         public DataTable dtDietChartBreakfastDetails { get; set; }
         public DataTable dtDietChartMorningSnackDetails { get; set; }
@@ -54,6 +56,9 @@ namespace DietChart.Models
         public string Note { get; set; }
         public string NoteId { get; set; }
 
+        public string FromDate { get; set; }
+        public string ToDate { get; set; }
+
         public DataSet SaveDietChartDetails()
         {
             SqlParameter[] para = {
@@ -64,6 +69,8 @@ namespace DietChart.Models
                                        new SqlParameter("@Date", Date),
                                        new SqlParameter("@DietPreference", DietPreference),
                                        new SqlParameter("@BMI",BMI),
+                                        new SqlParameter("@Calorie",Calorie),
+                                         new SqlParameter("@Protein",Protein),
                                         new SqlParameter("@AddedBy",CreatedBy),
                                       new SqlParameter("@dtDietChartOnWakingUpDetails",dtDietChartOnWakingUpDetails),
                                       new SqlParameter("@dtDietChartBreakfastDetails",dtDietChartBreakfastDetails),
@@ -103,7 +110,15 @@ namespace DietChart.Models
         }
         public DataSet GetDietChartList()
         {
-            DataSet ds = Connection.ExecuteQuery("GetDietChartList");
+            SqlParameter[] para = {
+                new SqlParameter("@Name", Name),
+                 new SqlParameter("@Age", Age),
+                     new SqlParameter("@FromDate", FromDate),
+                     new SqlParameter("@ToDate", ToDate)
+                                  };
+
+
+            DataSet ds = Connection.ExecuteQuery("GetDietChartList", para);
             return ds;
         }
 
