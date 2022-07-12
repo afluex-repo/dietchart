@@ -267,3 +267,4 @@ E:\SachinMishraProject\repository\dietchart\DietChart\obj\Debug\DietChart.csproj
 E:\SachinMishraProject\repository\dietchart\DietChart\obj\Debug\DietChart.dll
 E:\SachinMishraProject\repository\dietchart\DietChart\obj\Debug\DietChart.pdb
 E:\Repository-Projects\repository\dietchart\DietChart\obj\Debug\DietChart.csprojResolveAssemblyReference.cache
+E:\Repository\dietchart\DietChart\obj\Debug\DietChart.csprojResolveAssemblyReference.cache
