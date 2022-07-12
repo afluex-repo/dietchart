@@ -263,8 +263,7 @@ E:\SachinMishraProject\repository\dietchart\DietChart\bin\Newtonsoft.Json.xml
 E:\SachinMishraProject\repository\dietchart\DietChart\bin\System.Net.Http.Formatting.xml
 E:\SachinMishraProject\repository\dietchart\DietChart\bin\System.Web.Http.xml
 E:\SachinMishraProject\repository\dietchart\DietChart\bin\System.Web.Http.WebHost.xml
-E:\SachinMishraProject\repository\dietchart\DietChart\obj\Debug\DietChart.csprojResolveAssemblyReference.cache
 E:\SachinMishraProject\repository\dietchart\DietChart\obj\Debug\DietChart.dll
 E:\SachinMishraProject\repository\dietchart\DietChart\obj\Debug\DietChart.pdb
 E:\Repository-Projects\repository\dietchart\DietChart\obj\Debug\DietChart.csprojResolveAssemblyReference.cache
-E:\Repository\dietchart\DietChart\obj\Debug\DietChart.csprojResolveAssemblyReference.cache
+E:\SachinMishraProject\repository\dietchart\DietChart\obj\Debug\DietChart.csprojResolveAssemblyReference.cache
