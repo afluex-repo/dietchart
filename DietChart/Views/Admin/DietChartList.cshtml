@@ -86,6 +86,8 @@
                                         <th>Date</th>
                                         <th>Diet Preference</th>
                                         <th>BMI</th>
+                                        <th>Calorie</th>
+                                        <th>Protein</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -106,10 +108,12 @@
                                                     <td>@Item.Date</td>
                                                     <td>@Item.DietPreference</td>
                                                     <td>@Item.BMI</td>
+                                                    <td>@Item.Calorie</td>
+                                                    <td>@Item.Protein</td>
                                                     <td>
                                                         <a href="/Admin/PrintDietChartDetails?Fk_DietChartId=@Item.Encrypt" class="btn bg-orange py-2">View</a>
                                                         @*<a href="/Admin/DietChart?Fk_DietChartId=@Item.Fk_DietChartId" class="btn bg-success">Edit</a>*@
-                                                        <a href="/Home/DietChart?Fk_DietChartId=@Item.Fk_DietChartId&Newid=2" class="btn bg-primary">Use Another</a>
+                                                        <a href="/Home/DietChart?Fk_DietChartId=@Item.Fk_DietChartId&Newid=2" class="btn bg-primary py-2">Use Another</a>
 
                                                         <a href="javascript:void(0)" class="btn bg-orange  py-2" onclick="DeleteDietChart('@Item.Fk_DietChartId')">Delete</a>
                                                     </td>

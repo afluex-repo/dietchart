@@ -113,6 +113,8 @@ namespace DietChart.Controllers
                     obj.Date = dr["Date"].ToString();
                     obj.DietPreference = dr["DietPreference"].ToString();
                     obj.BMI = dr["BMI"].ToString();
+                    obj.Calorie = dr["Calorie"].ToString();
+                    obj.Protein = dr["Protein"].ToString();
                     lst.Add(obj);
                 }
                 model.lstdietchart = lst;
@@ -144,6 +146,8 @@ namespace DietChart.Controllers
                     obj.Date = dr["Date"].ToString();
                     obj.DietPreference = dr["DietPreference"].ToString();
                     obj.BMI = dr["BMI"].ToString();
+                    obj.Calorie = dr["Calorie"].ToString();
+                    obj.Protein = dr["Protein"].ToString();
                     lst.Add(obj);
                 }
                 model.lstdietchart = lst;
