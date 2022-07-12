@@ -92,8 +92,8 @@ namespace DietChart.Controllers
                     model.Date = ds.Tables[0].Rows[0]["Date"].ToString();
                     model.DietPreference = ds.Tables[0].Rows[0]["DietPreference"].ToString();
                     model.BMI = ds.Tables[0].Rows[0]["BMI"].ToString();
-
-
+                    model.Calorie = ds.Tables[0].Rows[0]["Calorie"].ToString();
+                    model.Protein = ds.Tables[0].Rows[0]["Protein"].ToString();
                     foreach (DataRow dr in ds.Tables[1].Rows)
                     {
                         Admin obj = new Admin();
