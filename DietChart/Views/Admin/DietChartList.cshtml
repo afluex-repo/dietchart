@@ -24,10 +24,23 @@
         .table thead th {
             color: black;
         }
-      .card .card-body
-      {
-          box-shadow:1px 1px 2px gray;
-      }
+
+    .card .card-body {
+        box-shadow: 1px 1px 2px gray;
+    }
+
+
+
+    .form-control, .asColorPicker-input, .dataTables_wrapper select, .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row select, .jsgrid .jsgrid-table .jsgrid-filter-row input[type=number], .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead, .tt-query, .tt-hint {
+        border: 1px solid #2c2e33;
+        height: calc(2.25rem + 2px);
+        font-weight: normal;
+        font-size: 0.875rem;
+        padding: 0.625rem 0.6875rem;
+        background-color: #fff;
+        border-radius: 2px;
+        color: #1a1818;
+    }
 </style>
 
 <div class="content-wrapper">
@@ -37,12 +50,32 @@
             <div class="card bg-white">
                 <div class="card-body">
                     <span class="text-danger">
-                       @TempData["msg"]
+                        @TempData["msg"]
                     </span>
                     <h4 class="card-title text-black">Diet Chart List</h4>
                     <div class="row mb-4">
-                        <div class="table-responsive text-nowrap">
-                            <table id="file_export" class="table table-striped">
+                        <div class="col-sm-3">
+                            <label for="exampleInputName1">Name</label>
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @Placeholder = "Name", @onkeypress = "return onlyAlphabets();" })
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="exampleInputEmail3">Age</label>
+                            @Html.TextBoxFor(m => m.Age, new { @class = "form-control", @Placeholder = "Age" })
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="exampleInputName1">From Date</label>
+                            @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @Placeholder = "dd/mm/yyy", @readonly = true })
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="exampleInputName1">To Date</label>
+                            @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control", @Placeholder = "dd/mm/yyy", @readonly = true })
+                        </div><br /><br /><br /><br />
+                        <div class="col-sm-3">
+                            <input class="btn bg-primary" type="submit" value="Search" id="btnsearch" name="btnsearch" />
+                        </div>
+
+                        <div class="table-responsive text-nowrap" style="margin-top:50px;">
+                            <table id="example" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
@@ -74,11 +107,11 @@
                                                     <td>@Item.DietPreference</td>
                                                     <td>@Item.BMI</td>
                                                     <td>
-                                                        <a href="/Admin/PrintDietChartDetails?Fk_DietChartId=@Item.Encrypt" class="btn bg-orange">View</a>
+                                                        <a href="/Admin/PrintDietChartDetails?Fk_DietChartId=@Item.Encrypt" class="btn bg-orange py-2">View</a>
                                                         @*<a href="/Admin/DietChart?Fk_DietChartId=@Item.Fk_DietChartId" class="btn bg-success">Edit</a>*@
                                                         <a href="/Home/DietChart?Fk_DietChartId=@Item.Fk_DietChartId&Newid=2" class="btn bg-primary">Use Another</a>
 
-      <a href="javascript:void(0)" class="btn bg-orange" onclick="DeleteDietChart('@Item.Fk_DietChartId')">Delete</a>
+                                                        <a href="javascript:void(0)" class="btn bg-orange  py-2" onclick="DeleteDietChart('@Item.Fk_DietChartId')">Delete</a>
                                                     </td>
                                                 </tr>
                                                 i++;
@@ -94,26 +127,40 @@
         </div>
     }
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 
 <script>
-    function DeleteDietChart(Id)
-    {
+    $('#FromDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        maxDate: 0,
+        changeYear: true,
+        changeMonth: true
+    });
+    $('#ToDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        maxDate: 0,
+        changeYear: true,
+        changeMonth: true
+    });
+
+  
+
+    function DeleteDietChart(Id) {
         debugger;
         var r = confirm('Are you sure you want to delete this diet chart details ?');
-        if(r==true)
-        {
+        if (r == true) {
             $.ajax({
                 type: 'post',
                 url: '/Admin/DeleteDietChart',
                 dataType: 'json',
                 data: { 'Id': Id },
-                success:function(data)
-                {
+                success: function (data) {
                     //alert('Diet Chart details deleted successfully');
                     window.location.href = '/Admin/DietChartList';
                 },
-                Error:function()
-                {
+                Error: function () {
                     //alert('Record not deleted');
                 }
             });

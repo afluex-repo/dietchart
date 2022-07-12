@@ -80,6 +80,14 @@
                             <label for="exampleInputPassword4">BMI <span style="color: red">*</span></label>
                             @Html.TextBoxFor(m => m.BMI, new { @class = "form-control", @Placeholder = "BMI" })
                         </div>
+                        <div class="col-sm-3">
+                            <label for="exampleInputPassword4">Calorie <span style="color: red">*</span></label>
+                            @Html.TextBoxFor(m => m.Calorie, new { @class = "form-control", @Placeholder = "Calorie" })
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="exampleInputPassword4">Protein <span style="color: red">*</span></label>
+                            @Html.TextBoxFor(m => m.Protein, new { @class = "form-control", @Placeholder = "Protein" })
+                        </div>
                     </div>
 
                 </div>
@@ -678,7 +686,7 @@
             debugger
             if (isAllValid) {
                 var $newRow = $('#walkinrow').clone().removeAttr('id');
-                $('.OnWakingUp', $newRow).removeClass('errortext').prop('disabled', true).val($('#OnWakingUp').val());
+                $('.OnWakingUp', $newRow).removeClass('errortext').prop('disabled', false).val($('#OnWakingUp').val());
                 //Replace add button with remove button
                 $('#addOnWakingUp', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
                 //remove id attribute from new clone row
@@ -710,7 +718,7 @@
             debugger
             if (isAllValid) {
                 var $newRow = $('#breakfastrow').clone().removeAttr('id');
-                $('.Breakfast', $newRow).removeClass('errortext').prop('disabled', true).val($('#Breakfast').val());
+                $('.Breakfast', $newRow).removeClass('errortext').prop('disabled', false).val($('#Breakfast').val());
                 //Replace add button with remove button
                 $('#addBreakfast', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
                 //remove id attribute from new clone row
@@ -742,7 +750,7 @@
             debugger
             if (isAllValid) {
                 var $newRow = $('#MorningSnackrow').clone().removeAttr('id');
-                $('.MorningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#MorningSnack').val());
+                $('.MorningSnack', $newRow).removeClass('errortext').prop('disabled', false).val($('#MorningSnack').val());
                 //Replace add button with remove button
                 $('#addMorningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
                 //remove id attribute from new clone row
@@ -775,7 +783,7 @@
             debugger
             if (isAllValid) {
                 var $newRow = $('#Lunchrow').clone().removeAttr('id');
-                $('.Lunch', $newRow).removeClass('errortext').prop('disabled', true).val($('#Lunch').val());
+                $('.Lunch', $newRow).removeClass('errortext').prop('disabled', false).val($('#Lunch').val());
                 //Replace add button with remove button
                 $('#addLunch', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
                 //remove id attribute from new clone row
@@ -807,7 +815,7 @@
             debugger
             if (isAllValid) {
                 var $newRow = $('#EveningSnackrow').clone().removeAttr('id');
-                $('.EveningSnack', $newRow).removeClass('errortext').prop('disabled', true).val($('#EveningSnack').val());
+                $('.EveningSnack', $newRow).removeClass('errortext').prop('disabled', false).val($('#EveningSnack').val());
                 //Replace add button with remove button
                 $('#addEveningSnack', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
                 //remove id attribute from new clone row
@@ -839,7 +847,7 @@
             debugger
             if (isAllValid) {
                 var $newRow = $('#Dinnerrow').clone().removeAttr('id');
-                $('.Dinner', $newRow).removeClass('errortext').prop('disabled', true).val($('#Dinner').val());
+                $('.Dinner', $newRow).removeClass('errortext').prop('disabled', false).val($('#Dinner').val());
                 //Replace add button with remove button
                 $('#addDinner', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
                 //remove id attribute from new clone row
@@ -872,7 +880,7 @@
             debugger
             if (isAllValid) {
                 var $newRow = $('#Noterow').clone().removeAttr('id');
-                $('.Note', $newRow).removeClass('errortext').prop('disabled', true).val($('#Note').val());
+                $('.Note', $newRow).removeClass('errortext').prop('disabled', false).val($('#Note').val());
                 //Replace add button with remove button
                 $('#addNote', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-success');
                 //remove id attribute from new clone row
@@ -938,6 +946,18 @@
         else if ($('#BMI').val() == '') {
             $("#BMI").addClass('errortext');
             $('#BMI').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Calorie').val() == '') {
+            $("#Calorie").addClass('errortext');
+            $('#Calorie').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        else if ($('#Protein').val() == '') {
+            $("#Protein").addClass('errortext');
+            $('#Protein').focus();
             $("#divload").css({ 'display': 'none' });
             return false;
         }
@@ -1200,6 +1220,8 @@
                 formData.append("Date", $('#Date').val());
                 formData.append("DietPreference", $('#DietPreference').val());
                 formData.append("BMI", $('#BMI').val());
+                formData.append("Calorie", $('#Calorie').val());
+                formData.append("Protein", $('#Protein').val());
                 formData.append("wakingupdataValue", JSON.stringify(wakingupdata));
                 formData.append("BreakfastdataValue", JSON.stringify(Breakfastdata));
                 formData.append("MorningSnackdataValue", JSON.stringify(MorningSnackdata));

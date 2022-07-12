@@ -119,6 +119,40 @@ namespace DietChart.Controllers
             }
             return View(model);
         }
+
+        [HttpPost]
+        [ActionName("DietChartList")]
+        public ActionResult DietChartList(Admin model)
+        {
+            model.Name = model.Name == "" ? null : model.Name;
+            model.Age = model.Age == "" ? null : model.Age;
+            model.FromDate = string.IsNullOrEmpty(model.FromDate) ? null : Common.ConvertToSystemDate(model.FromDate, "dd/MM/yyyy");
+            model.ToDate = string.IsNullOrEmpty(model.ToDate) ? null : Common.ConvertToSystemDate(model.ToDate, "dd/MM/yyyy");
+            List<Admin> lst = new List<Admin>();
+            DataSet ds = model.GetDietChartList();
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    Admin obj = new Admin();
+                    obj.Fk_DietChartId = dr["PK_DietChartMasterID"].ToString();
+                    obj.Encrypt = Crypto.Encrypt(dr["PK_DietChartMasterID"].ToString());
+                    obj.Name = dr["Name"].ToString();
+                    obj.Age = dr["Age"].ToString();
+                    obj.Weight = dr["Weight"].ToString();
+                    obj.Height = dr["Height"].ToString();
+                    obj.Date = dr["Date"].ToString();
+                    obj.DietPreference = dr["DietPreference"].ToString();
+                    obj.BMI = dr["BMI"].ToString();
+                    lst.Add(obj);
+                }
+                model.lstdietchart = lst;
+            }
+            return View(model);
+        }
+
+
+
         public ActionResult PrintDietChartDetails(string Fk_DietChartId)
         {
             Admin model = new Admin();
@@ -136,6 +170,8 @@ namespace DietChart.Controllers
                     ViewBag.Date = ds.Tables[0].Rows[0]["Date"].ToString();
                     ViewBag.DietPreference = ds.Tables[0].Rows[0]["DietPreference"].ToString();
                     ViewBag.BMI = ds.Tables[0].Rows[0]["BMI"].ToString();
+                    ViewBag.Calorie = ds.Tables[0].Rows[0]["Calorie"].ToString();
+                    ViewBag.Protein = ds.Tables[0].Rows[0]["Protein"].ToString();
 
                     foreach (DataRow dr in ds.Tables[1].Rows)
                     {
