@@ -916,7 +916,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\AdminDashBoard.cshtml" />
-    <Content Include="Views\Admin\DietChart.cshtml" />
+    <Content Include="Views\Home\DietChart.cshtml" />
     <Content Include="Views\Admin\DietChartList.cshtml" />
     <Content Include="Views\Admin\PrintDietChartDetails.cshtml" />
     <None Include="Web.Debug.config">
@@ -958,7 +958,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56441</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56442/</IISUrl>
+          <IISUrl>http://localhost:56443/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
